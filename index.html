@@ -211,8 +211,9 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
             <th onclick="sortBy('ubicacion')">Patio ↕</th>
             <th onclick="sortBy('estatus_asignacion')">Asignación ↕</th>
             <th onclick="sortBy('estatus_entrega')">Entrega ↕</th>
-            <th>Cliente</th>
-            <th>Fotos</th>
+            <th onclick="sortBy('modelo')">Modelo ↕</th>
+<th>Cliente</th>
+<th>Fotos</th>
           </tr></thead>
           <tbody id="inv-tbody"></tbody>
         </table>
@@ -273,7 +274,8 @@ async function loadData(manual=false){
       estatus_entrega:String(d['ESTATUS DE ENTREGA']||'').trim().toUpperCase(),
       cliente:String(d['CLIENTE ASIGNADO']||'').trim(),
       fotos:String(d['FOTOS']||'').trim(),
-condicion:String(d['NUEVO O USADO']||'').trim().toUpperCase()
+condicion:String(d['NUEVO O USADO']||'').trim().toUpperCase(),
+modelo:String(d['MODELO']||'').trim()
     }));
     if(allData.length===0)throw new Error('No se encontraron equipos válidos');
     hideError();renderAll();
@@ -430,7 +432,7 @@ function renderTable(){
     const eb=d.estatus_entrega==='PENDIENTE'?`<span class="badge badge-pendiente">PENDIENTE</span>`:`<span class="badge badge-entregado">ENTREGADO</span>`;
     const cli=d.cliente||'—';
     const fb=d.fotos&&d.fotos.startsWith('http')?`<a href="${d.fotos}" target="_blank" style="color:var(--accent);font-size:11px;font-weight:600;text-decoration:none">📂 Ver</a>`:`<button onclick="openModal('${d.niv}','${d.producto.replace(/'/g,"\\'")}','${d.fotos}')" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:11px">📷 Agregar</button>`;
-    return `<tr><td class="niv-cell">${d.niv}</td><td><strong>${d.marca}</strong></td><td style="font-size:12px">${d.producto}</td><td style="font-size:11px;color:var(--muted)">${d.ubicacion||'—'}</td><td>${ab}</td><td>${eb}</td><td style="font-size:11px;color:var(--ink2);max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${cli}">${cli}</td><td>${fb}</td></tr>`;
+    return `<tr><td class="niv-cell">${d.niv}</td><td><strong>${d.marca}</strong></td><td style="font-size:12px">${d.producto}</td><td style="font-size:11px;color:var(--muted)">${d.ubicacion||'—'}</td><td>${ab}</td><td>${eb}</td><td style="font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)">${d.modelo||'—'}</td><td style="font-size:11px;color:var(--ink2);max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${cli}">${cli}</td><td>${fb}</td></tr>`;
   }).join('');
 }
 
