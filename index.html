@@ -200,6 +200,7 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
         <select class="filter-sel" id="f-patio" onchange="applyFilters()"><option value="">Todos los patios</option></select>
         <select class="filter-sel" id="f-prod" onchange="applyFilters()"><option value="">Todos los tipos</option></select>
         <select class="filter-sel" id="f-condicion" onchange="applyFilters()"><option value="">Nueva/Usado/Recuperado</option></select>
+        <select class="filter-sel" id="f-modelo" onchange="applyFilters()"><option value="">Todos los años</option></select>
         <div class="result-count" id="res-count"></div>
       </div>
       <div class="table-wrap">
@@ -391,6 +392,10 @@ function populateFilters(){
   fill('f-marca',marcas);fill('f-patio',patios);fill('f-prod',productos);
 const condiciones=[...new Set(allData.map(d=>d.condicion))].filter(Boolean).sort();
 fill('f-condicion',condiciones);
+const modelos=[...new Set(allData.map(d=>d.modelo))].filter(Boolean).sort((a,b)=>b.localeCompare(a));
+fill('f-modelo',modelos);fill('f-marca',marcas);fill('f-patio',patios);fill('f-prod',productos);
+const condiciones=[...new Set(allData.map(d=>d.condicion))].filter(Boolean).sort();
+fill('f-condicion',condiciones);
 }
 
 function applyFilters(){
@@ -408,6 +413,8 @@ function applyFilters(){
     if(fpd&&d.producto!==fpd)return false;
     const fc=document.getElementById('f-condicion').value;
 if(fc&&d.condicion!==fc)return false;
+    const fm2=document.getElementById('f-modelo').value;
+if(fm2&&d.modelo!==fm2)return false;
     if(q){const hay=`${d.niv} ${d.cliente} ${d.producto} ${d.ubicacion} ${d.marca}`.toLowerCase();if(!hay.includes(q))return false;}
     return true;
   });
