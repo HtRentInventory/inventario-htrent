@@ -240,67 +240,48 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
   </div>
 </div>
 <script>
-const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbwrfgnUrVxEtJ9IhMVpSJ8z3cJ-JDwZXX_Ntokbdby1RWvkc7OTt0rGbbEWuh95750L/exec';
+const SHEETDB_URL='https://sheetdb.io/api/v1/sdm2uv8wvdsen?limit=5000';
 const REFRESH_INTERVAL_MS=60000;
 const PAGE=50;
 const VALID_NIV=/^[A-Z0-9]{5,20}$/i;
 const VALID_MARCAS=['FORZACO','ATRO','WABASH','UTILITY','GREAT DANE','STOUGHTON','HYUNDAI','MARGO','RAMIREZ','FAW','FRUEHAUF','HYSTER','LUFKIN','TYRSOL','WABASH NATIONAL'];
 let allData=[],filteredData=[],page=1,sortField='niv',sortAsc=true,refreshTimer=null;
 
-function loadData(manual=false){
-  const old=document.getElementById('jsonp-script');
-  if(old)old.remove();
-  const cbName='cb_'+Date.now();
-  const script=document.createElement('script');
-  script.id='jsonp-script';
-  const timer=setTimeout(()=>{
-    delete window[cbName];script.remove();
-    showError('Timeout: no se pudo conectar');
+async function loadData(manual=false){
+  try{
+    const res=await fetch(SHEETDB_URL,{cache:'no-store'});
+    if(!res.ok)throw new Error(`HTTP ${res.status}`);
+    const json=await res.json();
+    if(!Array.isArray(json)||json.length===0)throw new Error('Sin datos');
+    allData=json.filter(d=>{
+      const niv=String(d['NIV']||'').trim();
+      if(!niv||niv.length<5)return false;
+      if(niv.includes('#')||niv.includes('='))return false;
+      if(!VALID_NIV.test(niv))return false;
+      const marca=String(d['MARCA']||'').trim().toUpperCase();
+      if(!VALID_MARCAS.includes(marca))return false;
+      const asig=String(d['ESTATUS DE ASIGNACION']||'').trim().toUpperCase();
+      if(!['LIBRE','ASIGNADO'].includes(asig))return false;
+      return true;
+    }).map(d=>({
+      niv:String(d['NIV']||'').trim(),
+      producto:String(d['PRODUCTO']||'').trim(),
+      marca:String(d['MARCA']||'').trim().toUpperCase(),
+      ubicacion:String(d['UBICACIÓN']||d['UBICACION']||'').trim().toUpperCase(),
+      estatus_asignacion:String(d['ESTATUS DE ASIGNACION']||'').trim().toUpperCase(),
+      estatus_entrega:String(d['ESTATUS DE ENTREGA']||'').trim().toUpperCase(),
+      cliente:String(d['CLIENTE ASIGNADO']||'').trim(),
+      fotos:String(d['FOTOS']||'').trim()
+    }));
+    if(allData.length===0)throw new Error('No se encontraron equipos válidos');
+    hideError();renderAll();
+    document.getElementById('last-update').textContent=`Actualizado: ${new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})}`;
     if(!document.getElementById('app').classList.contains('visible'))showApp();
-    scheduleRefresh();
-  },20000);
-  window[cbName]=function(json){
-    clearTimeout(timer);delete window[cbName];script.remove();
-    try{
-      if(!Array.isArray(json)||json.length===0)throw new Error('Sin datos');
-      allData=json.filter(d=>{
-        const niv=String(d.niv||'').trim();
-        if(!niv||niv.length<5)return false;
-        if(niv.includes('#')||niv.includes('='))return false;
-        if(!VALID_NIV.test(niv))return false;
-        const marca=String(d.marca||'').trim().toUpperCase();
-        if(!VALID_MARCAS.includes(marca))return false;
-        const asig=String(d.estatus_asignacion||'').trim().toUpperCase();
-        if(!['LIBRE','ASIGNADO'].includes(asig))return false;
-        return true;
-      }).map(d=>({
-        niv:String(d.niv||'').trim(),
-        producto:String(d.producto||'').trim(),
-        marca:String(d.marca||'').trim().toUpperCase(),
-        ubicacion:String(d.ubicacion||'').trim().toUpperCase(),
-        estatus_asignacion:String(d.estatus_asignacion||'').trim().toUpperCase(),
-        estatus_entrega:String(d.estatus_entrega||'').trim().toUpperCase(),
-        cliente:String(d.cliente||'').trim(),
-        fotos:String(d.fotos||'').trim()
-      }));
-      if(allData.length===0)throw new Error('No se encontraron equipos válidos');
-      hideError();renderAll();
-      document.getElementById('last-update').textContent=`Actualizado: ${new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})}`;
-      if(!document.getElementById('app').classList.contains('visible'))showApp();
-    }catch(err){
-      showError(`Error: ${err.message}`);
-      if(!document.getElementById('app').classList.contains('visible'))showApp();
-    }
-    scheduleRefresh();
-  };
-  script.onerror=()=>{
-    clearTimeout(timer);delete window[cbName];
-    showError('No se pudo conectar con Google Apps Script');
+  }catch(err){
+    showError(`No se pudo cargar: ${err.message}`);
     if(!document.getElementById('app').classList.contains('visible'))showApp();
-    scheduleRefresh();
-  };
-  script.src=APPS_SCRIPT_URL+'?callback='+cbName+'&t='+Date.now();
-  document.body.appendChild(script);
+  }
+  scheduleRefresh();
 }
 
 function scheduleRefresh(){clearTimeout(refreshTimer);refreshTimer=setTimeout(()=>loadData(),REFRESH_INTERVAL_MS);}
