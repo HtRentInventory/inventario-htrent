@@ -199,6 +199,7 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
         <select class="filter-sel" id="f-entrega" onchange="applyFilters()"><option value="">Entrega</option><option value="PENDIENTE">Pendiente</option><option value="ENTREGADO">Entregado</option></select>
         <select class="filter-sel" id="f-patio" onchange="applyFilters()"><option value="">Todos los patios</option></select>
         <select class="filter-sel" id="f-prod" onchange="applyFilters()"><option value="">Todos los tipos</option></select>
+        <select class="filter-sel" id="f-condicion" onchange="applyFilters()"><option value="">Nueva/Usado/Recuperado</option></select>
         <div class="result-count" id="res-count"></div>
       </div>
       <div class="table-wrap">
@@ -271,7 +272,8 @@ async function loadData(manual=false){
       estatus_asignacion:String(d['ESTATUS DE ASIGNACION']||'').trim().toUpperCase(),
       estatus_entrega:String(d['ESTATUS DE ENTREGA']||'').trim().toUpperCase(),
       cliente:String(d['CLIENTE ASIGNADO']||'').trim(),
-      fotos:String(d['FOTOS']||'').trim()
+      fotos:String(d['FOTOS']||'').trim(),
+condicion:String(d['NUEVO O USADO']||'').trim().toUpperCase()
     }));
     if(allData.length===0)throw new Error('No se encontraron equipos válidos');
     hideError();renderAll();
@@ -385,6 +387,8 @@ function populateFilters(){
   const productos=[...new Set(allData.map(d=>d.producto))].filter(Boolean).sort();
   const fill=(id,vals)=>{const sel=document.getElementById(id);const first=sel.options[0].outerHTML;sel.innerHTML=first+vals.map(v=>`<option value="${v}">${v}</option>`).join('');};
   fill('f-marca',marcas);fill('f-patio',patios);fill('f-prod',productos);
+const condiciones=[...new Set(allData.map(d=>d.condicion))].filter(Boolean).sort();
+fill('f-condicion',condiciones);
 }
 
 function applyFilters(){
@@ -400,6 +404,8 @@ function applyFilters(){
     if(fe&&d.estatus_entrega!==fe)return false;
     if(fp&&d.ubicacion!==fp)return false;
     if(fpd&&d.producto!==fpd)return false;
+    const fc=document.getElementById('f-condicion').value;
+if(fc&&d.condicion!==fc)return false;
     if(q){const hay=`${d.niv} ${d.cliente} ${d.producto} ${d.ubicacion} ${d.marca}`.toLowerCase();if(!hay.includes(q))return false;}
     return true;
   });
