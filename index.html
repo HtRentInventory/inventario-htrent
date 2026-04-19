@@ -6,14 +6,7 @@
 <title>HT RENT · Inventario en Vivo</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Instrument+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root {
-  --bg:#f0f2f5;--surface:#ffffff;--surface2:#f8f9fc;--border:#e2e6ef;
-  --border2:#d0d7e6;--ink:#0f1623;--ink2:#3d4a63;--muted:#8493b0;
-  --accent:#1a3cff;--accent-lt:#e8ecff;--libre:#00b87a;--libre-lt:#e6f8f3;
-  --asig:#1a3cff;--asig-lt:#e8ecff;--pend:#f59000;--pend-lt:#fff4e0;
-  --danger:#e8354a;--danger-lt:#fde8eb;--r:14px;--r-sm:8px;
-  --shadow:0 2px 12px rgba(15,22,35,.07);--shadow-lg:0 8px 32px rgba(15,22,35,.12);
-}
+:root{--bg:#f0f2f5;--surface:#fff;--surface2:#f8f9fc;--border:#e2e6ef;--border2:#d0d7e6;--ink:#0f1623;--ink2:#3d4a63;--muted:#8493b0;--accent:#1a3cff;--accent-lt:#e8ecff;--libre:#00b87a;--libre-lt:#e6f8f3;--asig:#1a3cff;--asig-lt:#e8ecff;--pend:#f59000;--pend-lt:#fff4e0;--danger:#e8354a;--danger-lt:#fde8eb;--r:14px;--r-sm:8px;--shadow:0 2px 12px rgba(15,22,35,.07);--shadow-lg:0 8px 32px rgba(15,22,35,.12)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--ink);font-family:'Instrument Sans',sans-serif;min-height:100vh;font-size:14px}
 #loading-screen{position:fixed;inset:0;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;gap:20px;transition:opacity .5s ease}
@@ -64,9 +57,7 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
 .bc-total{font-family:'Syne',sans-serif;font-size:38px;font-weight:800;color:var(--accent);line-height:1;margin-bottom:10px}
 .bc-chips{display:flex;flex-wrap:wrap;gap:5px}
 .chip{font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;font-family:'JetBrains Mono',monospace;letter-spacing:.3px}
-.chip-l{background:var(--libre-lt);color:var(--libre)}
-.chip-a{background:var(--asig-lt);color:var(--asig)}
-.chip-p{background:var(--pend-lt);color:var(--pend)}
+.chip-l{background:var(--libre-lt);color:var(--libre)}.chip-a{background:var(--asig-lt);color:var(--asig)}.chip-p{background:var(--pend-lt);color:var(--pend)}
 #detail-panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-lg);overflow:hidden;margin-bottom:24px;display:none}
 #detail-panel.open{display:block;animation:fadeIn .3s ease}
 .dp-head{background:var(--ink);padding:20px 28px;display:flex;align-items:center;justify-content:space-between}
@@ -116,15 +107,10 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
 .inv-table tr:hover td{background:var(--surface2)}
 .niv-cell{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
 .badge{display:inline-block;padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.4px;font-family:'JetBrains Mono',monospace}
-.badge-libre{background:var(--libre-lt);color:var(--libre)}
-.badge-asig{background:var(--asig-lt);color:var(--asig)}
-.badge-entregado{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}
-.badge-pendiente{background:var(--pend-lt);color:var(--pend)}
+.badge-libre{background:var(--libre-lt);color:var(--libre)}.badge-asig{background:var(--asig-lt);color:var(--asig)}.badge-entregado{background:var(--surface2);color:var(--muted);border:1px solid var(--border)}.badge-pendiente{background:var(--pend-lt);color:var(--pend)}
 .pagination{display:flex;gap:4px;justify-content:flex-end;margin-top:14px;align-items:center}
 .pg-btn{min-width:32px;height:32px;background:var(--surface);border:1px solid var(--border);color:var(--ink2);border-radius:var(--r-sm);cursor:pointer;font-size:12px;font-family:'JetBrains Mono',monospace;display:flex;align-items:center;justify-content:center;transition:all .15s}
-.pg-btn:hover:not(:disabled):not(.active){border-color:var(--accent);color:var(--accent)}
-.pg-btn.active{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}
-.pg-btn:disabled{opacity:.35;cursor:not-allowed}
+.pg-btn:hover:not(:disabled):not(.active){border-color:var(--accent);color:var(--accent)}.pg-btn.active{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:700}.pg-btn:disabled{opacity:.35;cursor:not-allowed}
 .pg-info{font-size:11px;color:var(--muted);padding:0 8px}
 #photo-modal{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);z-index:1000;display:none;align-items:center;justify-content:center;padding:24px}
 #photo-modal.open{display:flex}
@@ -143,11 +129,8 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
 .foto-step strong{color:var(--ink2)}
 .foto-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .foto-slot{border-radius:var(--r-sm);overflow:hidden;background:var(--surface2);border:1px solid var(--border);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;color:var(--muted);font-size:12px}
-.foto-slot-icon{font-size:28px;opacity:.3}
-.foto-slot-lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
-.empty{text-align:center;padding:48px;color:var(--muted)}
-.empty-icon{font-size:40px;opacity:.2;margin-bottom:10px}
-.empty p{font-size:13px}
+.foto-slot-icon{font-size:28px;opacity:.3}.foto-slot-lbl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+.empty{text-align:center;padding:48px;color:var(--muted)}.empty-icon{font-size:40px;opacity:.2;margin-bottom:10px}.empty p{font-size:13px}
 #error-banner{background:var(--danger-lt);border:1px solid var(--danger);border-radius:var(--r-sm);padding:12px 20px;margin-bottom:20px;font-size:13px;color:var(--danger);display:none}
 @media(max-width:800px){.kpi-strip{grid-template-columns:repeat(2,1fr)}.dp-kpis{grid-template-columns:repeat(2,1fr)}.dp-body{grid-template-columns:1fr}.dp-col:first-child{border-right:none;border-bottom:1px solid var(--border)}main{padding:16px}header{padding:0 16px}}
 </style>
@@ -259,65 +242,75 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
 <script>
 const APPS_SCRIPT_URL='https://script.google.com/macros/s/AKfycbwrfgnUrVxEtJ9IhMVpSJ8z3cJ-JDwZXX_Ntokbdby1RWvkc7OTt0rGbbEWuh95750L/exec';
 const REFRESH_INTERVAL_MS=60000;
-let allData=[],filteredData=[],page=1,sortField='niv',sortAsc=true,refreshTimer=null;
 const PAGE=50;
 const VALID_NIV=/^[A-Z0-9]{5,20}$/i;
 const VALID_MARCAS=['FORZACO','ATRO','WABASH','UTILITY','GREAT DANE','STOUGHTON','HYUNDAI','MARGO','RAMIREZ','FAW','FRUEHAUF','HYSTER','LUFKIN','TYRSOL','WABASH NATIONAL'];
+let allData=[],filteredData=[],page=1,sortField='niv',sortAsc=true,refreshTimer=null;
 
-async function loadData(manual=false){
-  try{
-    const res=await fetch(APPS_SCRIPT_URL,{cache:'no-store',redirect:'follow',mode:'cors'});
-    if(!res.ok)throw new Error(`HTTP ${res.status}`);
-    const text=await res.text();
-    let json;
-    try{json=JSON.parse(text)}catch(e){throw new Error('Respuesta inválida')}
-    if(!Array.isArray(json)||json.length===0)throw new Error('Sin datos');
-    allData=json.filter(d=>{
-      const niv=String(d.niv||'').trim();
-      if(!niv||niv.length<5)return false;
-      if(niv.includes('#')||niv.includes('='))return false;
-      if(!VALID_NIV.test(niv))return false;
-      const marca=String(d.marca||'').trim().toUpperCase();
-      if(!VALID_MARCAS.includes(marca))return false;
-      const asig=String(d.estatus_asignacion||'').trim().toUpperCase();
-      if(!['LIBRE','ASIGNADO'].includes(asig))return false;
-      return true;
-    }).map(d=>({
-      niv:String(d.niv||'').trim(),
-      producto:String(d.producto||'').trim(),
-      marca:String(d.marca||'').trim().toUpperCase(),
-      ubicacion:String(d.ubicacion||'').trim().toUpperCase(),
-      estatus_asignacion:String(d.estatus_asignacion||'').trim().toUpperCase(),
-      estatus_entrega:String(d.estatus_entrega||'').trim().toUpperCase(),
-      cliente:String(d.cliente||'').trim(),
-      fotos:String(d.fotos||'').trim()
-    }));
-    if(allData.length===0)throw new Error('No se encontraron equipos válidos');
-    hideError();renderAll();
-    document.getElementById('last-update').textContent=`Actualizado: ${new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})}`;
+function loadData(manual=false){
+  const old=document.getElementById('jsonp-script');
+  if(old)old.remove();
+  const cbName='cb_'+Date.now();
+  const script=document.createElement('script');
+  script.id='jsonp-script';
+  const timer=setTimeout(()=>{
+    delete window[cbName];script.remove();
+    showError('Timeout: no se pudo conectar');
     if(!document.getElementById('app').classList.contains('visible'))showApp();
-  }catch(err){
-    showError(`No se pudo cargar: ${err.message}`);
+    scheduleRefresh();
+  },20000);
+  window[cbName]=function(json){
+    clearTimeout(timer);delete window[cbName];script.remove();
+    try{
+      if(!Array.isArray(json)||json.length===0)throw new Error('Sin datos');
+      allData=json.filter(d=>{
+        const niv=String(d.niv||'').trim();
+        if(!niv||niv.length<5)return false;
+        if(niv.includes('#')||niv.includes('='))return false;
+        if(!VALID_NIV.test(niv))return false;
+        const marca=String(d.marca||'').trim().toUpperCase();
+        if(!VALID_MARCAS.includes(marca))return false;
+        const asig=String(d.estatus_asignacion||'').trim().toUpperCase();
+        if(!['LIBRE','ASIGNADO'].includes(asig))return false;
+        return true;
+      }).map(d=>({
+        niv:String(d.niv||'').trim(),
+        producto:String(d.producto||'').trim(),
+        marca:String(d.marca||'').trim().toUpperCase(),
+        ubicacion:String(d.ubicacion||'').trim().toUpperCase(),
+        estatus_asignacion:String(d.estatus_asignacion||'').trim().toUpperCase(),
+        estatus_entrega:String(d.estatus_entrega||'').trim().toUpperCase(),
+        cliente:String(d.cliente||'').trim(),
+        fotos:String(d.fotos||'').trim()
+      }));
+      if(allData.length===0)throw new Error('No se encontraron equipos válidos');
+      hideError();renderAll();
+      document.getElementById('last-update').textContent=`Actualizado: ${new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})}`;
+      if(!document.getElementById('app').classList.contains('visible'))showApp();
+    }catch(err){
+      showError(`Error: ${err.message}`);
+      if(!document.getElementById('app').classList.contains('visible'))showApp();
+    }
+    scheduleRefresh();
+  };
+  script.onerror=()=>{
+    clearTimeout(timer);delete window[cbName];
+    showError('No se pudo conectar con Google Apps Script');
     if(!document.getElementById('app').classList.contains('visible'))showApp();
-  }
-  clearTimeout(refreshTimer);
-  refreshTimer=setTimeout(()=>loadData(),REFRESH_INTERVAL_MS);
+    scheduleRefresh();
+  };
+  script.src=APPS_SCRIPT_URL+'?callback='+cbName+'&t='+Date.now();
+  document.body.appendChild(script);
 }
 
-function showApp(){
-  const ls=document.getElementById('loading-screen');
-  ls.classList.add('fade-out');
-  setTimeout(()=>{ls.style.display='none'},500);
-  document.getElementById('app').classList.add('visible');
-}
+function scheduleRefresh(){clearTimeout(refreshTimer);refreshTimer=setTimeout(()=>loadData(),REFRESH_INTERVAL_MS);}
+function showApp(){const ls=document.getElementById('loading-screen');ls.classList.add('fade-out');setTimeout(()=>{ls.style.display='none'},500);document.getElementById('app').classList.add('visible');}
 function showError(msg){const b=document.getElementById('error-banner');b.style.display='block';b.textContent='⚠️ '+msg;}
 function hideError(){document.getElementById('error-banner').style.display='none';}
-
 function renderAll(){renderKPIs();renderBrands();renderPatios();populateFilters();applyFilters();}
 
 function renderKPIs(){
-  const t=allData.length;
-  const l=allData.filter(d=>d.estatus_asignacion==='LIBRE').length;
+  const t=allData.length,l=allData.filter(d=>d.estatus_asignacion==='LIBRE').length;
   const ap=allData.filter(d=>d.estatus_asignacion==='ASIGNADO'&&d.estatus_entrega==='PENDIENTE').length;
   const p=allData.filter(d=>d.estatus_entrega==='PENDIENTE').length;
   document.getElementById('k-total').textContent=t.toLocaleString('es-MX');
