@@ -315,13 +315,21 @@ let allData=[],filteredData=[],page=1,sortField='niv',sortAsc=true,refreshTimer=
 // activeData = solo LIBRES + PENDIENTES DE ENTREGA (para marcas y patios)
 let activeData=[];
 
-async function loadData(manual=false){
-  try{
-    const res=await fetch(API_URL,{cache:'no-store',redirect:'follow'});
-    if(!res.ok)throw new Error(`HTTP ${res.status}`);
-    const text=await res.text();
-    let json;
-    try{json=JSON.parse(text)}catch(e){throw new Error('Respuesta inválida')}
+function loadData(manual=false){
+  const old=document.getElementById('jsonp-sc');
+  if(old)old.remove();
+  const cb='cb_'+Date.now();
+  const sc=document.createElement('script');
+  sc.id='jsonp-sc';
+  const timer=setTimeout(()=>{
+    delete window[cb];sc.remove();
+    showError('Timeout al conectar');
+    if(!document.getElementById('app').classList.contains('visible'))showApp();
+    scheduleRefresh();
+  },20000);
+  window[cb]=function(json){
+    clearTimeout(timer);delete window[cb];sc.remove();
+    try{
     if(!Array.isArray(json)||json.length===0)throw new Error('Sin datos');
 
     const clean=json
@@ -362,10 +370,19 @@ async function loadData(manual=false){
     document.getElementById('last-update').textContent=`Actualizado: ${new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})}`;
     if(!document.getElementById('app').classList.contains('visible'))showApp();
   }catch(err){
-    showError(`No se pudo cargar: ${err.message}`);
+      showError(`Error: ${err.message}`);
+      if(!document.getElementById('app').classList.contains('visible'))showApp();
+    }
+    scheduleRefresh();
+  };
+  sc.onerror=()=>{
+    clearTimeout(timer);delete window[cb];
+    showError('No se pudo conectar');
     if(!document.getElementById('app').classList.contains('visible'))showApp();
-  }
-  scheduleRefresh();
+    scheduleRefresh();
+  };
+  sc.src=API_URL+'?callback='+cb+'&t='+Date.now();
+  document.body.appendChild(sc);
 }
 
 function scheduleRefresh(){clearTimeout(refreshTimer);refreshTimer=setTimeout(()=>loadData(),REFRESH_INTERVAL_MS);}
