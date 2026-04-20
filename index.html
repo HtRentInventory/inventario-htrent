@@ -248,7 +248,7 @@ const SHEETDB_URL='https://sheetdb.io/api/v1/sdm2uv8wvdsen?sheet=INV2&limit=5000
 const REFRESH_INTERVAL_MS=60000;
 const PAGE=50;
 const VALID_NIV=/^[A-Z0-9]{5,20}$/i;
-const VALID_MARCAS=['FORZACO','ATRO','WABASH','UTILITY','GREAT DANE','STOUGHTON','HYUNDAI','MARGO','RAMIREZ','FAW','FRUEHAUF','HYSTER','LUFKIN','TYRSOL','WABASH NATIONAL'];
+const VALID_MARCAS=['FORZACO','ATRO','WABASH','UTILITY','GREAT DANE','STOUGHTON','HYUNDAI','MARGO','RAMIREZ','FAW','FRUEHAUF','HYSTER','LUFKIN','TYRSOL','WABASH NATIONAL','FORZACO ','ATRO '];
 let allData=[],filteredData=[],page=1,sortField='niv',sortAsc=true,refreshTimer=null;
 
 async function loadData(manual=false){
@@ -263,9 +263,9 @@ async function loadData(manual=false){
       if(niv.includes('#')||niv.includes('='))return false;
       if(!VALID_NIV.test(niv))return false;
       const marca=String(d['MARCA']||'').trim().toUpperCase();
-      if(!VALID_MARCAS.includes(marca))return false;
-      const asig=String(d['ESTATUS DE ASIGNACION']||'').trim().toUpperCase();
-      if(!['LIBRE','ASIGNADO'].includes(asig))return false;
+      if(!VALID_MARCAS.includes(marca)&&marca.length>0)return false;
+     const asig=String(d['ESTATUS DE ASIGNACION']||d.estatus_asignacion||'').trim().toUpperCase();
+      if(!['LIBRE','ASIGNADO'].includes(asig)&&asig.length>0)return false;
       return true;
     }).map(d=>({
       niv:String(d['NIV']||'').trim(),
