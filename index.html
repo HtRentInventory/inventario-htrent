@@ -155,7 +155,7 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
     <div id="error-banner"></div>
     <div class="kpi-strip">
       <div class="kpi" style="--kc:#1a3cff"><div class="kpi-icon">📦</div><div class="kpi-label">Equipos Totales</div><div class="kpi-val" id="k-total">—</div><div class="kpi-sub">Inventario completo</div><div class="kpi-accent-bar"></div></div>
-      <div class="kpi" style="--kc:#00b87a"><div class="kpi-icon">✅</div><div class="kpi-label">Equipos Libres</div><div class="kpi-val" id="k-libres">—</div><div class="kpi-sub">Disponibles</div><div class="kpi-accent-bar"></div></div>
+      <div class="kpi" style="--kc:#00b87a;cursor:pointer" onclick="filtrarLibres()"><div class="kpi-icon">✅</div><div class="kpi-label">Equipos Libres</div><div class="kpi-val" id="k-libres">—</div><div class="kpi-sub">Clic para ver detalle →</div><div class="kpi-accent-bar"></div></div>
       <div class="kpi" style="--kc:#1a3cff"><div class="kpi-icon">🔒</div><div class="kpi-label">Asignados s/Entregar</div><div class="kpi-val" id="k-asig-pend">—</div><div class="kpi-sub">Asignado + entrega pendiente</div><div class="kpi-accent-bar"></div></div>
       <div class="kpi" style="--kc:#f59000"><div class="kpi-icon">⏳</div><div class="kpi-label">Pendientes Entrega</div><div class="kpi-val" id="k-pend">—</div><div class="kpi-sub">Estatus pendiente total</div><div class="kpi-accent-bar"></div></div>
     </div>
@@ -493,7 +493,19 @@ function openModal(niv,producto,driveLink){
 }
 function closeModal(){document.getElementById('photo-modal').classList.remove('open');}
 document.getElementById('photo-modal').addEventListener('click',e=>{if(e.target===document.getElementById('photo-modal'))closeModal();});
-
+function filtrarLibres(){
+  switchTab('equipos', document.querySelectorAll('.tab-btn')[2]);
+  document.getElementById('f-asig').value='LIBRE';
+  document.getElementById('f-entrega').value='';
+  document.getElementById('f-marca').value='';
+  document.getElementById('f-patio').value='';
+  document.getElementById('f-prod').value='';
+  document.getElementById('f-condicion').value='';
+  document.getElementById('f-modelo').value='';
+  document.getElementById('search-q').value='';
+  applyFilters();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
 loadData();
 </script>
 </body>
