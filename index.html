@@ -340,7 +340,8 @@ function loadData(manual=false){
         if(!/^[A-Z0-9]{5,20}$/i.test(niv))return false;
         const marca=String(d.marca||d.MARCA||'').trim();
         if(!marca||marca.length<2)return false;
-        return true;
+        const asig=String(d.estatus_asignacion||d['ESTATUS DE ASIGNACION']||'').trim().toUpperCase();
+        if(!['LIBRE','ASIGNADO'].includes(asig))return false;
       })
       .map(d=>({
         niv:String(d.niv||d.NIV||'').trim(),
