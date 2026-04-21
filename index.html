@@ -47,9 +47,10 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
 .tab-pane{display:none;animation:fadeIn .25s ease}
 .tab-pane.active{display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
-.sec-hdr{display:flex;align-items:baseline;gap:10px;margin-bottom:16px}
+.sec-hdr{display:flex;align-items:baseline;gap:10px;margin-bottom:16px;flex-wrap:wrap}
 .sec-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--ink)}
 .sec-count{font-size:12px;color:var(--muted);background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:2px 10px;font-family:'JetBrains Mono',monospace}
+.sec-note{font-size:11px;color:var(--muted)}
 .brand-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin-bottom:24px}
 .brand-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:20px;cursor:pointer;transition:all .2s;box-shadow:var(--shadow)}
 .brand-card:hover{border-color:var(--accent);box-shadow:0 0 0 4px var(--accent-lt),var(--shadow-lg);transform:translateY(-2px)}
@@ -82,11 +83,6 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
 .bar-track{flex:1;height:6px;background:var(--border);border-radius:4px;overflow:hidden}
 .bar-fill{height:100%;border-radius:4px;transition:width .7s cubic-bezier(.22,1,.36,1)}
 .bar-n{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);width:28px;text-align:right}
-.mini-table{width:100%;border-collapse:collapse;font-size:11px}
-.mini-table th{text-align:left;padding:6px 8px;background:var(--surface2);color:var(--muted);font-size:9px;text-transform:uppercase;letter-spacing:.8px;border-bottom:1px solid var(--border);font-weight:600}
-.mini-table td{padding:6px 8px;border-bottom:1px solid var(--border)}
-.mini-table tr:last-child td{border-bottom:none}
-.mini-table tr:hover td{background:var(--surface2)}
 .patios-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
 .patio-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;box-shadow:var(--shadow);transition:all .2s}
 .patio-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg);border-color:var(--border2)}
@@ -204,7 +200,7 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
       <div class="sec-hdr">
         <div class="sec-title">Marcas</div>
         <div class="sec-count" id="brand-count">—</div>
-        <div style="font-size:11px;color:var(--muted);margin-left:8px">Mostrando equipos libres y pendientes de entrega</div>
+        <div class="sec-note">Muestra equipos libres y pendientes de entrega</div>
       </div>
       <div class="brand-grid" id="brand-grid"></div>
       <div id="detail-panel">
@@ -213,22 +209,10 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
           <button class="dp-close" onclick="closeDetail()">✕</button>
         </div>
         <div class="dp-kpis">
-          <div class="dp-kpi">
-            <div class="dp-kpi-val" style="color:var(--ink)" id="dp-total">—</div>
-            <div class="dp-kpi-lbl">Total activos</div>
-          </div>
-          <div class="dp-kpi">
-            <div class="dp-kpi-val" style="color:var(--libre)" id="dp-libre">—</div>
-            <div class="dp-kpi-lbl">Libres</div>
-          </div>
-          <div class="dp-kpi">
-            <div class="dp-kpi-val" style="color:var(--asig)" id="dp-asig">—</div>
-            <div class="dp-kpi-lbl">Asignados s/Entregar</div>
-          </div>
-          <div class="dp-kpi">
-            <div class="dp-kpi-val" style="color:var(--pend)" id="dp-pend">—</div>
-            <div class="dp-kpi-lbl">Pend. Entrega Total</div>
-          </div>
+          <div class="dp-kpi"><div class="dp-kpi-val" style="color:var(--ink)" id="dp-total">—</div><div class="dp-kpi-lbl">Total activos</div></div>
+          <div class="dp-kpi"><div class="dp-kpi-val" style="color:var(--libre)" id="dp-libre">—</div><div class="dp-kpi-lbl">Libres</div></div>
+          <div class="dp-kpi"><div class="dp-kpi-val" style="color:var(--asig)" id="dp-asig">—</div><div class="dp-kpi-lbl">Asignados s/Entregar</div></div>
+          <div class="dp-kpi"><div class="dp-kpi-val" style="color:var(--pend)" id="dp-pend">—</div><div class="dp-kpi-lbl">Pend. Entrega Total</div></div>
         </div>
         <div class="dp-body">
           <div class="dp-col">
@@ -309,11 +293,7 @@ main{padding:28px 32px;flex:1;max-width:1680px;margin:0 auto;width:100%}
 const API_URL='https://script.google.com/macros/s/AKfycbwrfgnUrVxEtJ9IhMVpSJ8z3cJ-JDwZXX_Ntokbdby1RWvkc7OTt0rGbbEWuh95750L/exec';
 const REFRESH_INTERVAL_MS=60000;
 const PAGE=50;
-let allData=[],filteredData=[],page=1,sortField='niv',sortAsc=true,refreshTimer=null;
-
-// allData = TODOS los equipos (para KPIs totales)
-// activeData = solo LIBRES + PENDIENTES DE ENTREGA (para marcas y patios)
-let activeData=[];
+let allData=[],activeData=[],filteredData=[],page=1,sortField='niv',sortAsc=true,refreshTimer=null;
 
 function loadData(manual=false){
   const old=document.getElementById('jsonp-sc');
@@ -330,47 +310,39 @@ function loadData(manual=false){
   window[cb]=function(json){
     clearTimeout(timer);delete window[cb];sc.remove();
     try{
-    if(!Array.isArray(json)||json.length===0)throw new Error('Sin datos');
-
-    const clean=json
-      .filter(d=>{
-        const niv=String(d.niv||d.NIV||'').trim();
+      if(!Array.isArray(json)||json.length===0)throw new Error('Sin datos');
+      // Sin filtros estrictos — aceptar todos los equipos válidos
+      const clean=json.filter(d=>{
+        const niv=String(d.niv||'').trim();
         if(!niv||niv.length<5)return false;
-        if(niv.includes('#')||niv.includes('='))return false;
-        if(!/^[A-Z0-9]{5,20}$/i.test(niv))return false;
-        const marca=String(d.marca||d.MARCA||'').trim();
-        if(!marca||marca.length<2)return false;
-        const asig=String(d.estatus_asignacion||d['ESTATUS DE ASIGNACION']||'').trim().toUpperCase();
-        if(!['LIBRE','ASIGNADO'].includes(asig))return false;
-      })
-      .map(d=>({
-        niv:String(d.niv||d.NIV||'').trim(),
-        producto:String(d.producto||d.PRODUCTO||'').trim(),
-        marca:String(d.marca||d.MARCA||'').trim().toUpperCase(),
-        modelo:String(d.modelo||d.MODELO||'').trim(),
-        ubicacion:String(d.ubicacion||d['UBICACIÓN']||d.UBICACION||'').trim().toUpperCase(),
-        estatus_asignacion:String(d.estatus_asignacion||d['ESTATUS DE ASIGNACION']||'').trim().toUpperCase(),
-        estatus_entrega:String(d.estatus_entrega||d['ESTATUS DE ENTREGA']||'').trim().toUpperCase(),
-        condicion:String(d.condicion||d['NUEVO O USADO']||'').trim().toUpperCase(),
-        cliente:String(d.cliente||d['CLIENTE ASIGNADO']||'').trim(),
-        fotos:String(d.fotos||d.FOTOS||'').trim()
-      }));
-
-    if(clean.length===0)throw new Error('No se encontraron equipos válidos');
-
-    // allData = todos para KPIs y tabla de equipos
-    allData=clean;
-
-    // activeData = solo LIBRES + equipos con ESTATUS ENTREGA PENDIENTE
-    activeData=clean.filter(d=>
-      d.estatus_asignacion==='LIBRE' ||
-      d.estatus_entrega==='PENDIENTE'
-    );
-
-    hideError();renderAll();
-    document.getElementById('last-update').textContent=`Actualizado: ${new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})}`;
-    if(!document.getElementById('app').classList.contains('visible'))showApp();
-  }catch(err){
+        if(niv.startsWith('#')||niv.startsWith('='))return false;
+        return true;
+      }).map(d=>({
+        niv:String(d.niv||'').trim(),
+        producto:String(d.producto||'').trim(),
+        marca:String(d.marca||'').trim().toUpperCase(),
+        modelo:String(d.modelo||'').trim(),
+        ubicacion:String(d.ubicacion||'').trim().toUpperCase(),
+        estatus_asignacion:String(d.estatus_asignacion||'').trim().toUpperCase(),
+        estatus_entrega:String(d.estatus_entrega||'').trim().toUpperCase(),
+        condicion:String(d.condicion||'').trim().toUpperCase(),
+        cliente:String(d.cliente||'').trim(),
+        fotos:String(d.fotos||'').trim()
+      })).filter(d=>
+        d.estatus_asignacion===''||
+        d.estatus_asignacion==='LIBRE'||
+        d.estatus_asignacion==='ASIGNADO'
+      );
+      if(clean.length===0)throw new Error('No se encontraron equipos válidos');
+      allData=clean;
+      activeData=clean.filter(d=>
+        d.estatus_asignacion==='LIBRE'||
+        d.estatus_entrega==='PENDIENTE'
+      );
+      hideError();renderAll();
+      document.getElementById('last-update').textContent=`Actualizado: ${new Date().toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'})}`;
+      if(!document.getElementById('app').classList.contains('visible'))showApp();
+    }catch(err){
       showError(`Error: ${err.message}`);
       if(!document.getElementById('app').classList.contains('visible'))showApp();
     }
@@ -378,7 +350,7 @@ function loadData(manual=false){
   };
   sc.onerror=()=>{
     clearTimeout(timer);delete window[cb];
-    showError('No se pudo conectar');
+    showError('No se pudo conectar con Google Apps Script');
     if(!document.getElementById('app').classList.contains('visible'))showApp();
     scheduleRefresh();
   };
@@ -404,9 +376,9 @@ function renderKPIs(){
 }
 
 function renderBrands(){
-  // Usar activeData para las tarjetas de marca
   const s={};
   activeData.forEach(d=>{
+    if(!d.marca)return;
     if(!s[d.marca])s[d.marca]={total:0,libres:0,asigPend:0,pendTotal:0};
     s[d.marca].total++;
     if(d.estatus_asignacion==='LIBRE')s[d.marca].libres++;
@@ -434,14 +406,11 @@ function showDetail(marca){
   const l=d.filter(r=>r.estatus_asignacion==='LIBRE').length;
   const ap=d.filter(r=>r.estatus_asignacion==='ASIGNADO'&&r.estatus_entrega==='PENDIENTE').length;
   const p=d.filter(r=>r.estatus_entrega==='PENDIENTE').length;
-
   document.getElementById('dp-name').textContent=marca;
   document.getElementById('dp-total').textContent=d.length.toLocaleString('es-MX');
   document.getElementById('dp-libre').textContent=l.toLocaleString('es-MX');
   document.getElementById('dp-asig').textContent=ap.toLocaleString('es-MX');
   document.getElementById('dp-pend').textContent=p.toLocaleString('es-MX');
-
-  // Tipos de remolque
   const pc={};d.forEach(r=>pc[r.producto]=(pc[r.producto]||0)+1);
   const ps=Object.entries(pc).sort((a,b)=>b[1]-a[1]);
   const mx=ps[0]?.[1]||1;
@@ -451,8 +420,6 @@ function showDetail(marca){
       <div class="bar-track"><div class="bar-fill" style="width:${Math.round(n/mx*100)}%;background:var(--accent)"></div></div>
       <div class="bar-n">${n}</div>
     </div>`).join('');
-
-  // Patios libres
   const ptL={};
   d.filter(r=>r.estatus_asignacion==='LIBRE').forEach(r=>{
     if(!r.ubicacion||r.ubicacion==='NAN')return;
@@ -466,8 +433,6 @@ function showDetail(marca){
       <div class="bar-track"><div class="bar-fill" style="width:${Math.round(n/mxL*100)}%;background:var(--libre)"></div></div>
       <div class="bar-n">${n}</div>
     </div>`).join(''):'<div style="font-size:12px;color:var(--muted);padding:8px 0">Sin equipos libres</div>';
-
-  // Patios pendientes
   const ptP={};
   d.filter(r=>r.estatus_entrega==='PENDIENTE').forEach(r=>{
     if(!r.ubicacion||r.ubicacion==='NAN')return;
@@ -481,7 +446,6 @@ function showDetail(marca){
       <div class="bar-track"><div class="bar-fill" style="width:${Math.round(n/mxP*100)}%;background:var(--pend)"></div></div>
       <div class="bar-n">${n}</div>
     </div>`).join(''):'<div style="font-size:12px;color:var(--muted);padding:8px 0">Sin pendientes</div>';
-
   const panel=document.getElementById('detail-panel');
   panel.classList.add('open');
   setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}),50);
@@ -523,11 +487,7 @@ function populateFilters(){
   const condiciones=[...new Set(allData.map(d=>d.condicion))].filter(Boolean).sort();
   const modelos=[...new Set(allData.map(d=>d.modelo))].filter(Boolean).sort((a,b)=>b.localeCompare(a));
   const fill=(id,vals)=>{const sel=document.getElementById(id);const first=sel.options[0].outerHTML;sel.innerHTML=first+vals.map(v=>`<option value="${v}">${v}</option>`).join('');};
-  fill('f-marca',marcas);
-  fill('f-patio',patios);
-  fill('f-prod',productos);
-  fill('f-condicion',condiciones);
-  fill('f-modelo',modelos);
+  fill('f-marca',marcas);fill('f-patio',patios);fill('f-prod',productos);fill('f-condicion',condiciones);fill('f-modelo',modelos);
 }
 
 function applyFilters(){
@@ -569,7 +529,7 @@ function renderTable(){
   tbody.innerHTML=rows.map(d=>{
     const ab=d.estatus_asignacion==='LIBRE'?`<span class="badge badge-libre">LIBRE</span>`:`<span class="badge badge-asig">ASIGNADO</span>`;
     const eb=d.estatus_entrega==='PENDIENTE'?`<span class="badge badge-pendiente">PENDIENTE</span>`:`<span class="badge badge-entregado">ENTREGADO</span>`;
-    const conBadge=d.condicion==='NUEVO'?`<span class="badge" style="background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7">NUEVO</span>`:d.condicion==='RECUPERADO'?`<span class="badge" style="background:#fff3e0;color:#e65100;border:1px solid #ffcc80">RECUPERADO</span>`:`<span class="badge" style="background:var(--surface2);color:var(--muted);border:1px solid var(--border)">${d.condicion||'—'}</span>`;
+    const conBadge=d.condicion==='NUEVO'?`<span class="badge" style="background:#e8f5e9;color:#2e7d32;border:1px solid #a5d6a7">NUEVO</span>`:d.condicion==='RECUPERADO'?`<span class="badge" style="background:#fff3e0;color:#e65100;border:1px solid #ffcc80">RECUPERADO</span>`:d.condicion?`<span class="badge" style="background:var(--surface2);color:var(--muted);border:1px solid var(--border)">${d.condicion}</span>`:'—';
     const cli=d.cliente||'—';
     const fb=d.fotos&&d.fotos.startsWith('http')?`<a href="${d.fotos}" target="_blank" style="color:var(--accent);font-size:11px;font-weight:600;text-decoration:none">📂 Ver</a>`:`<button onclick="openModal('${d.niv}','${d.producto.replace(/'/g,"\\'")}','${d.fotos}')" style="background:none;border:none;cursor:pointer;color:var(--muted);font-size:11px">📷 Agregar</button>`;
     return `<tr>
