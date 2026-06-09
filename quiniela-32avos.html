@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiniela de Dieciseisavos HT Rent 2026 · Ronda de 32</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{--asfalto:#14213D;--asfalto-2:#1F3057;--carga:#FCA311;--trofeo:#F4D35E;--cancha:#1B998B;--bandera:#E63946;--niebla:#F4F6F9;--papel:#FFFFFF;--linea:#E2E6ED;--tinta:#1A2233;--tinta-soft:#5A6478;}
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--tinta);background:var(--niebla);line-height:1.55;-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 22px;}
+  .eyebrow{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:700;}
+  .hero{background:var(--asfalto);background-image:radial-gradient(circle at 78% 22%, rgba(252,163,17,.16), transparent 45%);color:#fff;overflow:hidden;}
+  .hero-grid{max-width:980px;margin:0 auto;padding:46px 22px 30px;display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;}
+  .hero .eyebrow{color:var(--carga);}
+  .hero h1{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(2.4rem,5.6vw,4rem);line-height:.92;margin:.35em 0 .2em;text-transform:uppercase;}
+  .hero h1 span{color:var(--carga);display:block;}
+  .hero .tagline{font-size:1.05rem;color:#C7D0E3;max-width:36ch;margin:0 0 18px;}
+  .hero .pill{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:.78rem;font-weight:700;background:rgba(244,211,94,.12);color:var(--trofeo);border:1px solid rgba(244,211,94,.4);padding:6px 12px;border-radius:999px;}
+  .hero-art{width:100%;max-width:420px;justify-self:center;}
+  @media (prefers-reduced-motion:no-preference){#wheel-1,#wheel-2,#wheel-3{transform-box:fill-box;transform-origin:center;animation:roll 2.4s linear infinite;}@keyframes roll{to{transform:rotate(360deg);}}}
+
+  .sec{padding:40px 0;}
+  .sec-head{margin-bottom:20px;}
+  .sec-head .eyebrow{color:var(--carga);}
+  .sec-head h2{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1;margin:.25em 0 0;}
+  .sec-head p{color:var(--tinta-soft);margin:.5em 0 0;max-width:64ch;}
+
+  .pasos{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .paso{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:16px;display:flex;gap:14px;}
+  .paso .num{font-family:'Anton',sans-serif;font-size:1.6rem;color:var(--carga);line-height:1;min-width:30px;}
+  .paso h3{margin:.1em 0 .3em;font-size:1rem;}
+  .paso p{margin:0;color:var(--tinta-soft);font-size:.9rem;}
+
+  .formula-sec{background:var(--asfalto);color:#fff;}
+  .formula-sec .sec-head h2{color:#fff;}.formula-sec .sec-head p{color:#AEB8CF;}
+  .formula{display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap;background:var(--asfalto-2);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:24px 18px;text-align:center;}
+  .formula .chip{font-family:'Anton',sans-serif;font-size:1.4rem;}.formula .op{font-family:'Anton',sans-serif;font-size:1.4rem;color:var(--carga);}.formula .res{font-family:'Anton',sans-serif;font-size:1.9rem;color:var(--trofeo);}
+  .formula small{display:block;font-family:'Inter';font-size:.7rem;font-weight:600;color:#9AA6C2;letter-spacing:.04em;margin-top:4px;text-transform:uppercase;}
+
+  .tablero-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
+  .conn{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.04em;padding:6px 11px;border-radius:999px;border:1px solid var(--linea);color:var(--tinta-soft);}
+  .conn-ok{color:var(--cancha);border-color:rgba(27,153,139,.4);background:rgba(27,153,139,.08);}
+  .conn-err{color:var(--bandera);border-color:rgba(230,57,70,.4);background:rgba(230,57,70,.06);}
+  .btn{font-family:'Inter';font-weight:700;font-size:.85rem;cursor:pointer;border-radius:9px;padding:9px 16px;background:transparent;border:1px solid var(--linea);color:var(--tinta);}
+  .btn:hover{border-color:var(--carga);}
+  .clave-in{font-family:'Space Mono',monospace;font-size:.8rem;border:1px solid var(--linea);border-radius:8px;padding:8px 10px;width:150px;}
+  #estado{font-size:.78rem;color:var(--tinta-soft);font-family:'Space Mono',monospace;}
+
+  .grupos{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
+  .gcard{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:14px 16px;}
+  .gtop{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+  .badge{font-family:'Space Mono',monospace;font-weight:700;background:var(--asfalto);color:#fff;border-radius:7px;padding:4px 9px;font-size:.72rem;letter-spacing:.04em;}
+  .gtitle{flex:1;}
+  .pot{font-family:'Anton',sans-serif;color:var(--cancha);font-size:1.2rem;}
+  .grow{display:grid;grid-template-columns:16px 1.1fr 1fr 74px;gap:6px;align-items:center;padding:3px 0;}
+  .grow .pos{font-family:'Space Mono',monospace;color:var(--carga);font-size:.7rem;}
+  .vs{text-align:center;font-family:'Anton',sans-serif;color:var(--tinta-soft);font-size:.72rem;letter-spacing:.12em;padding:2px 0;}
+  .cin{border:1px solid transparent;background:transparent;font:inherit;font-size:.84rem;padding:6px;border-radius:6px;color:var(--tinta);width:100%;}
+  .cin:hover{border-color:var(--linea);}
+  .cin:focus{background:#fff;outline:2px solid var(--carga);outline-offset:0;}
+  select.cin{cursor:pointer;font-size:.78rem;padding:6px 2px;}
+  .grow.winner{background:rgba(244,211,94,.22);border-radius:7px;}
+  .winner-note{font-size:.72rem;color:var(--cancha);margin-top:6px;font-family:'Space Mono',monospace;}
+
+  .casa{background:var(--papel);border:1px solid var(--linea);border-left:4px solid var(--carga);border-radius:0 12px 12px 0;padding:18px 20px;}
+  .casa h3{margin:0 0 10px;font-size:1.05rem;}
+  .casa ul{margin:0;padding-left:18px;color:var(--tinta-soft);font-size:.9rem;}.casa li{margin-bottom:7px;}
+
+  footer{background:var(--asfalto);color:#9AA6C2;text-align:center;padding:26px 22px;font-size:.8rem;}
+  footer b{color:var(--carga);font-family:'Space Mono',monospace;}
+
+  @media (max-width:720px){
+    .hero-grid{grid-template-columns:1fr;text-align:center;}.hero .tagline{margin:0 auto 18px;}.hero-art{grid-row:1;max-width:280px;}
+    .pasos,.grupos{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-grid">
+    <div>
+      <div class="eyebrow">HT Rent · Mundial 2026 · Quiniela 3</div>
+      <h1>Quiniela de<br>dieciseisavos<span>mano a mano</span></h1>
+      <p class="tagline">32 equipos, 16 duelos. Eliges equipos a $500; en cada duelo, quien apostó al que avanza se lleva la bolsa de ese duelo.</p>
+      <div class="pill">🔥 16 duelos · $500 por equipo</div>
+    </div>
+    <svg class="hero-art" viewBox="0 0 460 360" role="img" aria-label="Remolque de HT Rent rumbo al estadio">
+      <circle cx="80" cy="55" r="2" fill="#F4D35E" opacity=".7"/><circle cx="130" cy="35" r="1.6" fill="#fff" opacity=".6"/><circle cx="300" cy="48" r="1.8" fill="#fff" opacity=".5"/><circle cx="365" cy="80" r="2" fill="#F4D35E" opacity=".6"/>
+      <g transform="translate(350,70)"><circle r="34" fill="#F4F6F9"/><circle r="34" fill="none" stroke="#14213D" stroke-width="1.5" opacity=".25"/><path d="M0,-14 L13,-4 L8,11 L-8,11 L-13,-4 Z" fill="#14213D"/><g stroke="#14213D" stroke-width="2" opacity=".55"><line x1="0" y1="-14" x2="0" y2="-30"/><line x1="13" y1="-4" x2="28" y2="-9"/><line x1="8" y1="11" x2="17" y2="24"/><line x1="-8" y1="11" x2="-17" y2="24"/><line x1="-13" y1="-4" x2="-28" y2="-9"/></g></g>
+      <g opacity=".5" fill="#1F3057"><ellipse cx="95" cy="150" rx="78" ry="26"/><rect x="40" y="128" width="110" height="24" rx="6"/><rect x="55" y="116" width="80" height="16" rx="4" fill="#243a68"/></g>
+      <path d="M0,360 L460,360 L300,196 L150,196 Z" fill="#1F3057"/><path d="M222,206 L228,206 L222,250 L214,250 Z" fill="#F4D35E" opacity=".9"/><path d="M206,270 L218,270 L208,330 L192,330 Z" fill="#F4D35E" opacity=".9"/>
+      <g transform="translate(70,196)">
+        <rect x="60" y="0" width="170" height="86" rx="6" fill="#FCA311"/><rect x="60" y="0" width="170" height="86" rx="6" fill="none" stroke="#14213D" stroke-width="3" opacity=".15"/>
+        <text x="145" y="52" text-anchor="middle" font-family="Anton, sans-serif" font-size="34" fill="#14213D">HT RENT</text>
+        <g transform="translate(118,-58)"><path d="M0,0 h60 v6 q0,30 -22,38 v14 h-16 v-14 q-22,-8 -22,-38 Z" fill="#F4D35E"/><path d="M0,4 q-16,2 -16,16 q0,12 16,14" fill="none" stroke="#F4D35E" stroke-width="6"/><path d="M60,4 q16,2 16,16 q0,12 -16,14" fill="none" stroke="#F4D35E" stroke-width="6"/><rect x="18" y="58" width="24" height="8" fill="#F4D35E"/><rect x="10" y="66" width="40" height="9" rx="2" fill="#E6C04A"/><rect x="-2" y="20" width="64" height="7" fill="#14213D" opacity=".35"/></g>
+        <path d="M0,30 h58 v56 h-58 q-6,0 -6,-6 v-30 q0,-20 6,-20 Z" fill="#14213D"/><rect x="6" y="38" width="34" height="22" rx="3" fill="#8FB4E0"/><rect x="-6" y="64" width="64" height="10" fill="#0d1729"/>
+        <g fill="#0d1729"><circle id="wheel-1" cx="22" cy="90" r="16"/><circle id="wheel-2" cx="120" cy="90" r="16"/><circle id="wheel-3" cx="190" cy="90" r="16"/></g>
+        <g fill="#F4F6F9"><circle cx="22" cy="90" r="6"/><circle cx="120" cy="90" r="6"/><circle cx="190" cy="90" r="6"/></g>
+      </g>
+      <text x="30" y="345" font-family="Anton, sans-serif" font-size="26" fill="#FCA311" opacity=".9">2026</text>
+    </svg>
+  </div>
+</header>
+
+<section class="sec wrap">
+  <div class="sec-head"><div class="eyebrow">Cómo se juega</div><h2>La mecánica</h2><p>Quiniela aparte que arranca con los 32 equipos de Dieciseisavos de Final (28 de junio al 4 de julio).</p></div>
+  <div class="pasos">
+    <div class="paso"><div class="num">1</div><div><h3>Quedan 32 equipos</h3><p>16 duelos directos de 2 equipos cada uno. Entra quien quiera, haya jugado o no la de grupos.</p></div></div>
+    <div class="paso"><div class="num">2</div><div><h3>Eliges equipos a $500</h3><p>Cada equipo que elijas cuesta $500. Un mismo equipo lo pueden elegir varias personas.</p></div></div>
+    <div class="paso"><div class="num">3</div><div><h3>Cada duelo arma su bolsa</h3><p>El dinero apostado a los 2 equipos de un duelo forma su bolsa. Se calcula sola en el tablero.</p></div></div>
+    <div class="paso"><div class="num">4</div><div><h3>Gana quien tenga al que avanza</h3><p>Quien eligió al equipo que pasa a Octavos se lleva la bolsa del duelo. Si varios acertaron, se reparte.</p></div></div>
+  </div>
+</section>
+
+<section class="formula-sec">
+  <div class="sec wrap">
+    <div class="sec-head"><div class="eyebrow">El premio</div><h2>La bolsa de cada duelo</h2><p>Depende de cuántas apuestas caigan en ese duelo. El tablero la suma sola.</p></div>
+    <div class="formula"><div class="chip">Apuestas del duelo<small>1 o 2 equipos elegidos</small></div><div class="op">×</div><div class="chip">$500<small>por equipo</small></div><div class="op">=</div><div class="res">Bolsa del duelo<small>para el que avanza</small></div></div>
+  </div>
+</section>
+
+<section class="sec wrap">
+  <div class="sec-head"><div class="eyebrow">Tablero en vivo</div><h2>Los 16 duelos</h2><p>Los cruces se conocen al terminar la fase de grupos. Anota los 2 equipos de cada duelo y quién los eligió; marca "Avanza" en el que pase. La bolsa se calcula sola y todos la ven.</p></div>
+  <div class="tablero-bar">
+    <span id="conexion" class="conn">Conectando con el tablero…</span>
+    <button class="btn" id="btn-refrescar">↻ Actualizar</button>
+    <input class="clave-in" id="clave" type="text" placeholder="Clave (si aplica)" autocomplete="off">
+    <span id="estado"></span>
+  </div>
+  <div class="grupos" id="grupos"></div>
+</section>
+
+<section class="sec wrap">
+  <div class="casa">
+    <h3>Reglas de la casa (acordar antes de empezar)</h3>
+    <ul>
+      <li><strong>El que avanza es el ganador del duelo:</strong> si hay tiempo extra o penales, gana quien eligió al equipo que clasifica a Octavos.</li>
+      <li><strong>Si nadie eligió al que avanza:</strong> definan si la bolsa se acumula, se devuelve o pasa al siguiente duelo.</li>
+      <li><strong>Cierre:</strong> cierren y cobren todas las apuestas antes del primer partido de Dieciseisavos (28 de junio), ya con los cruces definidos.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>Quiniela de Dieciseisavos <b>HT Rent 2026</b> · 16 duelos · $500 por equipo · Uso interno entre colaboradores.</footer>
+
+<script>
+  /* ====== CONFIGURACIÓN ====== Pega la URL de tu App Web (termina en /exec) — la MISMA de la quiniela de grupos */
+  var WEB_APP_URL = https://script.google.com/macros/s/AKfycbwOnKvoIrOfN4Igddr1YBvSQRY4imcvOHepn4Q7RNS--0Zo85dQwdw6jQrgxEVWM5aJ/exec
+
+  var Q='duelos', GRUPOS=16, POR=2, CUOTA=500, MARCA='Avanza';
+  var N=GRUPOS*POR;
+  var CONFIGURED = WEB_APP_URL.indexOf('script.google.com')!==-1;
+  var editando=false;
+
+  function jsonp(p){return new Promise(function(res,rej){var cb='cb_'+Math.random().toString(36).slice(2);var s=document.createElement('script');var t=setTimeout(function(){clean();rej(new Error('timeout'));},12000);function clean(){clearTimeout(t);try{delete window[cb];}catch(e){window[cb]=undefined;}if(s.parentNode)s.parentNode.removeChild(s);}window[cb]=function(d){clean();res(d);};var qs=Object.keys(p).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(p[k]);}).join('&');s.src=WEB_APP_URL+'?'+qs+'&callback='+cb;s.onerror=function(){clean();rej(new Error('red'));};document.head.appendChild(s);});}
+  function setConn(t,c){var el=document.getElementById('conexion');el.textContent=t;el.className='conn '+(c||'');}
+  function setEstado(t){document.getElementById('estado').textContent=t||'';}
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+  function fmt(n){return '$'+n.toLocaleString('es-MX');}
+
+  function render(rows){
+    var cont=document.getElementById('grupos'), html='';
+    for(var g=0;g<GRUPOS;g++){
+      html+='<div class="gcard"><div class="gtop"><div class="badge">Duelo '+(g+1)+'</div><div class="gtitle"></div><div class="pot" id="pot-'+g+'">$0</div></div>';
+      for(var j=0;j<POR;j++){
+        var idx=g*POR+j+1, r=(rows&&rows[idx-1])?rows[idx-1]:{equipo:'',participante:'',marca:''};
+        var dis=CONFIGURED?'':'disabled';
+        html+='<div class="grow" data-row="'+idx+'">'
+          +'<span class="pos">'+(j===0?'A':'B')+'</span>'
+          +'<input class="cin equipo" value="'+esc(r.equipo)+'" placeholder="Equipo" '+dis+'>'
+          +'<input class="cin part" value="'+esc(r.participante)+'" placeholder="Participante" '+dis+'>'
+          +'<select class="cin marca" '+dis+'><option value="">—</option><option value="Sí"'+(r.marca==='Sí'?' selected':'')+'>'+MARCA+'</option></select>'
+          +'</div>';
+        if(j===0) html+='<div class="vs">VS</div>';
+      }
+      html+='<div class="winner-note" id="wn-'+g+'"></div></div>';
+    }
+    cont.innerHTML=html;
+    if(CONFIGURED) enlazar();
+    for(var g2=0;g2<GRUPOS;g2++) actualizaGrupo(g2);
+  }
+
+  function actualizaGrupo(g){
+    var card=document.querySelectorAll('.gcard')[g];
+    var rows=card.querySelectorAll('.grow');
+    var pot=0, winner='';
+    rows.forEach(function(row){
+      var part=row.querySelector('.part').value.trim();
+      if(part) pot+=CUOTA;
+      if(row.querySelector('.marca').value==='Sí'){ row.classList.add('winner'); if(part) winner=part; }
+      else row.classList.remove('winner');
+    });
+    document.getElementById('pot-'+g).textContent=fmt(pot);
+    document.getElementById('wn-'+g).textContent = winner ? ('★ '+winner+' se lleva '+fmt(pot)) : '';
+  }
+
+  function enlazar(){
+    document.querySelectorAll('.grow').forEach(function(row){
+      row.querySelectorAll('.cin').forEach(function(el){
+        el.addEventListener('focus',function(){editando=true;});
+        el.addEventListener('blur',function(){setTimeout(function(){editando=false;},300);});
+        el.addEventListener('change',function(){ guardarFila(row); });
+      });
+    });
+  }
+
+  function guardarFila(row){
+    var g=Math.floor((parseInt(row.getAttribute('data-row'),10)-1)/POR);
+    actualizaGrupo(g);
+    setEstado('Guardando…');
+    jsonp({action:'save',q:Q,row:row.getAttribute('data-row'),
+           equipo:row.querySelector('.equipo').value,
+           participante:row.querySelector('.part').value,
+           marca:row.querySelector('.marca').value,
+           pin:document.getElementById('clave').value})
+    .then(function(res){ setEstado(res&&res.ok?'Guardado ✓':('Error: '+((res&&res.error)||'')));
+      setTimeout(function(){setEstado('');},2000);})
+    .catch(function(){ setEstado('Sin conexión'); });
+  }
+
+  function cargar(){
+    if(!CONFIGURED){ setConn('Tablero no conectado · sigue las instrucciones','conn-err'); render(null); return; }
+    jsonp({action:'list',q:Q}).then(function(res){
+      if(res&&res.ok){ if(!editando) render(res.rows); setConn('● Conectado al tablero','conn-ok'); }
+      else setConn('Error: '+((res&&res.error)||'desconocido'),'conn-err');
+    }).catch(function(){ setConn('Sin conexión con el tablero','conn-err'); });
+  }
+
+  document.getElementById('btn-refrescar').addEventListener('click',cargar);
+  render(null); cargar();
+  setInterval(function(){ if(CONFIGURED && !editando) cargar(); },30000);
+</script>
+</body>
+</html>
