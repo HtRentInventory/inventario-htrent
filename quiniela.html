@@ -9,112 +9,51 @@
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --asfalto:#14213D;
-    --asfalto-2:#1F3057;
-    --carga:#FCA311;
-    --trofeo:#F4D35E;
-    --cancha:#1B998B;
-    --bandera:#E63946;
-    --niebla:#F4F6F9;
-    --papel:#FFFFFF;
-    --linea:#E2E6ED;
-    --tinta:#1A2233;
-    --tinta-soft:#5A6478;
+    --asfalto:#14213D; --asfalto-2:#1F3057; --carga:#FCA311; --trofeo:#F4D35E;
+    --cancha:#1B998B; --bandera:#E63946; --niebla:#F4F6F9; --papel:#FFFFFF;
+    --linea:#E2E6ED; --tinta:#1A2233; --tinta-soft:#5A6478;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    font-family:'Inter',system-ui,sans-serif;
-    color:var(--tinta);
-    background:var(--niebla);
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
+  body{margin:0;font-family:'Inter',system-ui,sans-serif;color:var(--tinta);background:var(--niebla);line-height:1.55;-webkit-font-smoothing:antialiased;}
   .wrap{max-width:960px;margin:0 auto;padding:0 22px;}
-  .eyebrow{
-    font-family:'Space Mono',monospace;
-    text-transform:uppercase;
-    letter-spacing:.18em;
-    font-size:.72rem;
-    font-weight:700;
-  }
+  .eyebrow{font-family:'Space Mono',monospace;text-transform:uppercase;letter-spacing:.18em;font-size:.72rem;font-weight:700;}
 
-  /* ---------- HERO ---------- */
-  .hero{
-    background:var(--asfalto);
-    background-image:radial-gradient(circle at 78% 22%, rgba(252,163,17,.16), transparent 45%);
-    color:#fff;
-    overflow:hidden;
-    position:relative;
-  }
-  .hero-grid{
-    max-width:960px;margin:0 auto;padding:46px 22px 30px;
-    display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;
-  }
+  /* HERO */
+  .hero{background:var(--asfalto);background-image:radial-gradient(circle at 78% 22%, rgba(252,163,17,.16), transparent 45%);color:#fff;overflow:hidden;position:relative;}
+  .hero-grid{max-width:960px;margin:0 auto;padding:46px 22px 30px;display:grid;grid-template-columns:1.05fr .95fr;gap:24px;align-items:center;}
   .hero .eyebrow{color:var(--carga);}
-  .hero h1{
-    font-family:'Anton',sans-serif;
-    font-weight:400;
-    font-size:clamp(2.6rem,6vw,4.3rem);
-    line-height:.92;
-    margin:.35em 0 .2em;
-    text-transform:uppercase;
-    letter-spacing:.01em;
-  }
+  .hero h1{font-family:'Anton',sans-serif;font-weight:400;font-size:clamp(2.6rem,6vw,4.3rem);line-height:.92;margin:.35em 0 .2em;text-transform:uppercase;letter-spacing:.01em;}
   .hero h1 span{color:var(--carga);display:block;}
-  .hero .tagline{
-    font-size:1.05rem;color:#C7D0E3;max-width:34ch;margin:0 0 18px;
-  }
-  .hero .pill{
-    display:inline-flex;align-items:center;gap:8px;
-    font-family:'Space Mono',monospace;font-size:.78rem;font-weight:700;
-    background:rgba(244,211,94,.12);color:var(--trofeo);
-    border:1px solid rgba(244,211,94,.4);
-    padding:6px 12px;border-radius:999px;
-  }
+  .hero .tagline{font-size:1.05rem;color:#C7D0E3;max-width:34ch;margin:0 0 18px;}
+  .hero .pill{display:inline-flex;align-items:center;gap:8px;font-family:'Space Mono',monospace;font-size:.78rem;font-weight:700;background:rgba(244,211,94,.12);color:var(--trofeo);border:1px solid rgba(244,211,94,.4);padding:6px 12px;border-radius:999px;}
   .hero-art{width:100%;max-width:440px;justify-self:center;}
   @media (prefers-reduced-motion:no-preference){
     #wheel-1,#wheel-2,#wheel-3{transform-box:fill-box;transform-origin:center;animation:roll 2.4s linear infinite;}
     @keyframes roll{to{transform:rotate(360deg);}}
   }
 
-  /* ---------- SECTION SHELL ---------- */
+  /* SECTIONS */
   .sec{padding:44px 0;}
   .sec-head{margin-bottom:22px;}
   .sec-head .eyebrow{color:var(--carga);}
-  .sec-head h2{
-    font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;
-    font-size:clamp(1.7rem,4vw,2.4rem);line-height:1;margin:.25em 0 0;letter-spacing:.01em;
-  }
+  .sec-head h2{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(1.7rem,4vw,2.4rem);line-height:1;margin:.25em 0 0;letter-spacing:.01em;}
   .sec-head p{color:var(--tinta-soft);margin:.5em 0 0;max-width:62ch;}
 
-  /* ---------- MECANICA ---------- */
+  /* MECANICA */
   .pasos{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
-  .paso{
-    background:var(--papel);border:1px solid var(--linea);border-radius:14px;
-    padding:18px 18px 18px 16px;display:flex;gap:14px;
-  }
-  .paso .num{
-    font-family:'Anton',sans-serif;font-size:1.7rem;color:var(--carga);
-    line-height:1;min-width:34px;
-  }
+  .paso{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:18px 18px 18px 16px;display:flex;gap:14px;}
+  .paso .num{font-family:'Anton',sans-serif;font-size:1.7rem;color:var(--carga);line-height:1;min-width:34px;}
   .paso h3{margin:.1em 0 .3em;font-size:1.02rem;}
   .paso p{margin:0;color:var(--tinta-soft);font-size:.93rem;}
-  .nota{
-    margin-top:16px;font-size:.86rem;color:var(--tinta-soft);
-    border-left:3px solid var(--carga);padding:6px 0 6px 14px;background:rgba(252,163,17,.05);
-  }
+  .nota{margin-top:16px;font-size:.86rem;color:var(--tinta-soft);border-left:3px solid var(--carga);padding:6px 0 6px 14px;background:rgba(252,163,17,.05);}
 
-  /* ---------- PODIO ---------- */
+  /* PODIO */
   .podio-sec{background:var(--asfalto);color:#fff;}
   .podio-sec .sec-head h2{color:#fff;}
   .podio-sec .sec-head p{color:#AEB8CF;}
   .podio{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px;}
-  .lugar{
-    border-radius:16px;padding:22px 18px;position:relative;overflow:hidden;
-    background:var(--asfalto-2);border:1px solid rgba(255,255,255,.08);
-  }
+  .lugar{border-radius:16px;padding:22px 18px;position:relative;overflow:hidden;background:var(--asfalto-2);border:1px solid rgba(255,255,255,.08);}
   .lugar .pos{font-family:'Space Mono',monospace;font-weight:700;font-size:.72rem;letter-spacing:.12em;color:#9AA6C2;text-transform:uppercase;}
   .lugar .medal{font-family:'Anton',sans-serif;font-size:2.5rem;line-height:1;margin:.1em 0;}
   .lugar .quien{font-size:.92rem;color:#C7D0E3;}
@@ -124,27 +63,20 @@
   .l1 .medal{color:var(--trofeo);}
   .l2 .medal{color:#D7DEEC;}
   .l3 .medal{color:var(--carga);}
-  .bolsa{
-    margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:14px;
-  }
+  .bolsa{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
   .bolsa-card{background:var(--asfalto-2);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:16px 18px;}
   .bolsa-card .lbl{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.1em;color:#9AA6C2;text-transform:uppercase;}
   .bolsa-card .val{font-family:'Anton',sans-serif;font-size:1.9rem;margin-top:4px;}
   .bolsa-card .val .blank{color:var(--carga);border-bottom:2px dashed rgba(252,163,17,.6);padding:0 .4em;}
 
-  /* ---------- SORTEO ---------- */
+  /* SORTEO */
   .sorteo-card{background:var(--papel);border:1px solid var(--linea);border-radius:16px;padding:22px;}
   .sorteo-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
   .field label{display:block;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta-soft);margin-bottom:6px;}
-  textarea{
-    width:100%;min-height:230px;resize:vertical;font-family:'Space Mono',monospace;font-size:.85rem;
-    border:1px solid var(--linea);border-radius:10px;padding:12px;background:var(--niebla);color:var(--tinta);
-  }
-  textarea:focus,button:focus-visible{outline:3px solid var(--carga);outline-offset:2px;}
+  textarea{width:100%;min-height:230px;resize:vertical;font-family:'Space Mono',monospace;font-size:.85rem;border:1px solid var(--linea);border-radius:10px;padding:12px;background:var(--niebla);color:var(--tinta);}
+  textarea:focus,button:focus-visible,input:focus,select:focus{outline:3px solid var(--carga);outline-offset:2px;}
   .sorteo-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center;}
-  .btn{
-    font-family:'Inter';font-weight:700;font-size:.92rem;cursor:pointer;border:none;border-radius:10px;padding:11px 20px;
-  }
+  .btn{font-family:'Inter';font-weight:700;font-size:.92rem;cursor:pointer;border:none;border-radius:10px;padding:11px 20px;}
   .btn-primary{background:var(--carga);color:var(--asfalto);}
   .btn-primary:hover{background:#ffb02e;}
   .btn-ghost{background:transparent;border:1px solid var(--linea);color:var(--tinta);}
@@ -152,23 +84,36 @@
   #msg{font-size:.85rem;color:var(--tinta-soft);}
   #resultado{margin-top:18px;display:none;}
   #resultado ol{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-  #resultado li{
-    display:flex;align-items:center;gap:10px;background:var(--niebla);border:1px solid var(--linea);
-    border-radius:10px;padding:10px 12px;font-size:.92rem;
-  }
+  #resultado li{display:flex;align-items:center;gap:10px;background:var(--niebla);border:1px solid var(--linea);border-radius:10px;padding:10px 12px;font-size:.92rem;}
   #resultado li b{font-family:'Space Mono',monospace;color:var(--carga);min-width:26px;}
   #resultado li .arr{color:var(--tinta-soft);}
   #resultado li .eq{font-weight:700;}
 
-  /* ---------- TABLAS ---------- */
-  table{width:100%;border-collapse:collapse;background:var(--papel);border:1px solid var(--linea);border-radius:14px;overflow:hidden;}
-  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--linea);font-size:.9rem;}
-  th{background:var(--asfalto);color:#fff;font-family:'Space Mono',monospace;font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;}
-  td .line{display:block;height:1.1em;border-bottom:1px dashed var(--linea);}
-  tbody tr:nth-child(even){background:#FAFBFD;}
-  .estado{display:inline-block;width:14px;height:14px;border-radius:50%;border:2px solid var(--linea);}
+  /* TABLERO EN VIVO */
+  .tablero-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px;}
+  .conn{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.04em;padding:6px 11px;border-radius:999px;border:1px solid var(--linea);color:var(--tinta-soft);}
+  .conn-ok{color:var(--cancha);border-color:rgba(27,153,139,.4);background:rgba(27,153,139,.08);}
+  .conn-err{color:var(--bandera);border-color:rgba(230,57,70,.4);background:rgba(230,57,70,.06);}
+  .clave-in{font-family:'Space Mono',monospace;font-size:.8rem;border:1px solid var(--linea);border-radius:8px;padding:8px 10px;width:150px;}
 
-  /* ---------- RUTA / BRACKET ---------- */
+  table{width:100%;border-collapse:collapse;background:var(--papel);border:1px solid var(--linea);border-radius:14px;overflow:hidden;}
+  th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--linea);font-size:.9rem;}
+  th{background:var(--asfalto);color:#fff;font-family:'Space Mono',monospace;font-weight:700;font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;}
+  tbody tr:nth-child(even){background:#FAFBFD;}
+  .cell-in{width:100%;border:1px solid transparent;background:transparent;font:inherit;font-size:.9rem;padding:6px 7px;border-radius:7px;color:var(--tinta);}
+  .cell-in:hover{border-color:var(--linea);}
+  .cell-in:focus{background:#fff;}
+  select.cell-in{cursor:pointer;}
+  .num-cell{font-family:'Space Mono',monospace;font-weight:700;color:var(--carga);text-align:center;}
+  .btn-row{font-family:'Inter';font-weight:700;font-size:.76rem;border:1px solid var(--linea);background:#fff;border-radius:8px;padding:7px 11px;cursor:pointer;color:var(--tinta);white-space:nowrap;}
+  .btn-row:hover{border-color:var(--carga);}
+  .btn-row.ok{background:var(--cancha);color:#fff;border-color:var(--cancha);}
+  .btn-row.err{background:var(--bandera);color:#fff;border-color:var(--bandera);}
+  .estado-dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--linea);margin-right:6px;vertical-align:middle;}
+  .viva .estado-dot{background:var(--cancha);}
+  .fuera .estado-dot{background:var(--bandera);}
+
+  /* RUTA */
   .ruta{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
   .etapa{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:14px;text-align:center;position:relative;}
   .etapa .km{font-family:'Space Mono',monospace;font-size:.66rem;letter-spacing:.08em;color:var(--tinta-soft);text-transform:uppercase;}
@@ -177,7 +122,6 @@
   .etapa.meta{background:var(--carga);border-color:var(--carga);}
   .etapa.meta h4,.etapa.meta .km,.etapa.meta .cupos{color:var(--asfalto);}
 
-  /* ---------- FOOTER ---------- */
   footer{background:var(--asfalto);color:#9AA6C2;text-align:center;padding:28px 22px;font-size:.82rem;}
   footer b{color:var(--carga);font-family:'Space Mono',monospace;letter-spacing:.04em;}
 
@@ -188,9 +132,10 @@
     .pasos,.podio,.bolsa,.sorteo-cols{grid-template-columns:1fr;}
     .ruta{grid-template-columns:repeat(2,1fr);}
     #resultado ol{grid-template-columns:1fr;}
+    table{font-size:.82rem;}
+    th,td{padding:7px 8px;}
   }
 
-  /* ---------- PRINT ---------- */
   @media print{
     body{background:#fff;}
     .hero{background:#fff !important;color:var(--tinta);-webkit-print-color-adjust:exact;print-color-adjust:exact;}
@@ -200,6 +145,7 @@
     .podio-sec,.lugar,.bolsa-card,th,.etapa.meta{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
     .sec{padding:18px 0;break-inside:avoid;}
     .pasos,.podio,.ruta{break-inside:avoid;}
+    .cell-in{border-color:transparent;}
   }
 </style>
 </head>
@@ -214,13 +160,11 @@
       <p class="tagline">En HT Rent movemos remolques… esta vez movemos el trofeo. Te toca una selección al azar y la llevas hasta la meta. Quien arrastre al campeón, se lleva el premio.</p>
       <div class="pill">🏆 16 participantes · 1 sola bolsa · 3 ganadores</div>
     </div>
-    <svg class="hero-art" viewBox="0 0 460 360" role="img" aria-label="Remolque de HT Rent transportando el trofeo del mundial por la carretera rumbo al estadio">
-      <!-- cielo / estrellas -->
+    <svg class="hero-art" viewBox="0 0 460 360" role="img" aria-label="Remolque de HT Rent transportando el trofeo del mundial rumbo al estadio">
       <circle cx="80" cy="55" r="2" fill="#F4D35E" opacity=".7"/>
       <circle cx="130" cy="35" r="1.6" fill="#fff" opacity=".6"/>
       <circle cx="300" cy="48" r="1.8" fill="#fff" opacity=".5"/>
       <circle cx="365" cy="80" r="2" fill="#F4D35E" opacity=".6"/>
-      <!-- balón-sol -->
       <g transform="translate(350,70)">
         <circle r="34" fill="#F4F6F9"/>
         <circle r="34" fill="none" stroke="#14213D" stroke-width="1.5" opacity=".25"/>
@@ -231,37 +175,29 @@
           <line x1="-13" y1="-4" x2="-28" y2="-9"/>
         </g>
       </g>
-      <!-- estadio lejano -->
       <g opacity=".5" fill="#1F3057">
         <ellipse cx="95" cy="150" rx="78" ry="26"/>
         <rect x="40" y="128" width="110" height="24" rx="6"/>
         <rect x="55" y="116" width="80" height="16" rx="4" fill="#243a68"/>
       </g>
-      <!-- carretera -->
       <path d="M0,360 L460,360 L300,196 L150,196 Z" fill="#1F3057"/>
       <path d="M222,206 L228,206 L222,250 L214,250 Z" fill="#F4D35E" opacity=".9"/>
       <path d="M206,270 L218,270 L208,330 L192,330 Z" fill="#F4D35E" opacity=".9"/>
-      <!-- camion -->
       <g transform="translate(70,196)">
-        <!-- caja remolque -->
         <rect x="60" y="0" width="170" height="86" rx="6" fill="#FCA311"/>
         <rect x="60" y="0" width="170" height="86" rx="6" fill="none" stroke="#14213D" stroke-width="3" opacity=".15"/>
         <text x="145" y="52" text-anchor="middle" font-family="Anton, sans-serif" font-size="34" fill="#14213D">HT RENT</text>
-        <!-- trofeo de carga -->
         <g transform="translate(118,-58)">
           <path d="M0,0 h60 v6 q0,30 -22,38 v14 h-16 v-14 q-22,-8 -22,-38 Z" fill="#F4D35E"/>
           <path d="M0,4 q-16,2 -16,16 q0,12 16,14" fill="none" stroke="#F4D35E" stroke-width="6"/>
           <path d="M60,4 q16,2 16,16 q0,12 -16,14" fill="none" stroke="#F4D35E" stroke-width="6"/>
           <rect x="18" y="58" width="24" height="8" fill="#F4D35E"/>
           <rect x="10" y="66" width="40" height="9" rx="2" fill="#E6C04A"/>
-          <!-- correa de amarre -->
           <rect x="-2" y="20" width="64" height="7" fill="#14213D" opacity=".35"/>
         </g>
-        <!-- cabina -->
         <path d="M0,30 h58 v56 h-58 q-6,0 -6,-6 v-30 q0,-20 6,-20 Z" fill="#14213D"/>
         <rect x="6" y="38" width="34" height="22" rx="3" fill="#8FB4E0"/>
         <rect x="-6" y="64" width="64" height="10" fill="#0d1729"/>
-        <!-- llantas -->
         <g fill="#0d1729">
           <circle id="wheel-1" cx="22" cy="90" r="16"/>
           <circle id="wheel-2" cx="120" cy="90" r="16"/>
@@ -271,7 +207,6 @@
           <circle cx="22" cy="90" r="6"/><circle cx="120" cy="90" r="6"/><circle cx="190" cy="90" r="6"/>
         </g>
       </g>
-      <!-- 2026 -->
       <text x="30" y="345" font-family="Anton, sans-serif" font-size="26" fill="#FCA311" opacity=".9">2026</text>
     </svg>
   </div>
@@ -295,7 +230,7 @@
   <p class="nota"><strong>Nota sobre la ronda:</strong> en el formato del Mundial 2026 (48 selecciones) el cuadro va Dieciseisavos (32 equipos) → <strong>Octavos (16 equipos)</strong> → Cuartos → Semis → Final. El sorteo de esta quiniela se hace justo cuando quedan 16 equipos vivos, es decir, al iniciar Octavos de Final.</p>
 </section>
 
-<!-- PODIO + BOLSA -->
+<!-- PODIO -->
 <section class="podio-sec">
   <div class="sec wrap">
     <div class="sec-head">
@@ -304,34 +239,13 @@
       <p>Los tres lugares se definen por la posición final de la selección que te tocó. Los porcentajes son una propuesta: ajústenlos a lo que acuerde el grupo.</p>
     </div>
     <div class="podio">
-      <div class="lugar l1">
-        <div class="pos">1.er lugar</div>
-        <div class="medal">🥇</div>
-        <div class="quien">Te tocó la selección <b>Campeona</b> del Mundial.</div>
-        <div class="pct">50%<small>de la bolsa</small></div>
-      </div>
-      <div class="lugar l2">
-        <div class="pos">2.º lugar</div>
-        <div class="medal">🥈</div>
-        <div class="quien">Te tocó la selección <b>Subcampeona</b> (perdió la final).</div>
-        <div class="pct">30%<small>de la bolsa</small></div>
-      </div>
-      <div class="lugar l3">
-        <div class="pos">3.er lugar</div>
-        <div class="medal">🥉</div>
-        <div class="quien">Te tocó la selección que ganó el <b>partido por el 3.er puesto</b>.</div>
-        <div class="pct">20%<small>de la bolsa</small></div>
-      </div>
+      <div class="lugar l1"><div class="pos">1.er lugar</div><div class="medal">🥇</div><div class="quien">Te tocó la selección <b>Campeona</b> del Mundial.</div><div class="pct">50%<small>de la bolsa</small></div></div>
+      <div class="lugar l2"><div class="pos">2.º lugar</div><div class="medal">🥈</div><div class="quien">Te tocó la selección <b>Subcampeona</b> (perdió la final).</div><div class="pct">30%<small>de la bolsa</small></div></div>
+      <div class="lugar l3"><div class="pos">3.er lugar</div><div class="medal">🥉</div><div class="quien">Te tocó la selección que ganó el <b>partido por el 3.er puesto</b>.</div><div class="pct">20%<small>de la bolsa</small></div></div>
     </div>
     <div class="bolsa">
-      <div class="bolsa-card">
-        <div class="lbl">Cuota por participante</div>
-        <div class="val">$ <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;</span> MXN</div>
-      </div>
-      <div class="bolsa-card">
-        <div class="lbl">Bolsa total (cuota × 16)</div>
-        <div class="val">$ <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;</span> MXN</div>
-      </div>
+      <div class="bolsa-card"><div class="lbl">Cuota por participante</div><div class="val">$ <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;</span> MXN</div></div>
+      <div class="bolsa-card"><div class="lbl">Bolsa total (cuota × 16)</div><div class="val">$ <span class="blank">&nbsp;&nbsp;&nbsp;&nbsp;</span> MXN</div></div>
     </div>
   </div>
 </section>
@@ -339,51 +253,51 @@
 <!-- SORTEO -->
 <section class="sec wrap no-print" id="sorteo">
   <div class="sec-head">
-    <div class="eyebrow">Herramienta · Bonus</div>
+    <div class="eyebrow">Herramienta</div>
     <h2>Sorteo automático</h2>
-    <p>Llegados a Octavos, captura los 16 nombres y las 16 selecciones vivas (uno por renglón) y deja que la suerte empareje. Esta sección no se imprime.</p>
+    <p>Llegados a Octavos, captura los 16 nombres y las 16 selecciones vivas (uno por renglón) y deja que la suerte empareje. Luego puedes mandar el resultado directo al tablero.</p>
   </div>
   <div class="sorteo-card">
     <div class="sorteo-cols">
-      <div class="field">
-        <label for="nombres">Participantes (16, uno por renglón)</label>
-        <textarea id="nombres" placeholder="1. Roger&#10;2.&#10;3.&#10;..."></textarea>
-      </div>
-      <div class="field">
-        <label for="equipos">Selecciones vivas (16, una por renglón)</label>
-        <textarea id="equipos" placeholder="México&#10;Argentina&#10;Brasil&#10;..."></textarea>
-      </div>
+      <div class="field"><label for="nombres">Participantes (16, uno por renglón)</label><textarea id="nombres" placeholder="1. Roger&#10;2.&#10;3.&#10;..."></textarea></div>
+      <div class="field"><label for="equipos">Selecciones vivas (16, una por renglón)</label><textarea id="equipos" placeholder="México&#10;Argentina&#10;Brasil&#10;..."></textarea></div>
     </div>
     <div class="sorteo-actions">
       <button class="btn btn-primary" id="btn-sortear">🎲 Sortear</button>
       <button class="btn btn-ghost" id="btn-copiar">Copiar resultado</button>
+      <button class="btn btn-ghost" id="btn-guardar-sorteo" style="display:none">⬆ Guardar sorteo en el tablero</button>
       <span id="msg"></span>
     </div>
     <div id="resultado"><ol id="lista"></ol></div>
   </div>
 </section>
 
-<!-- REGISTRO -->
+<!-- TABLERO EN VIVO -->
 <section class="sec wrap" id="registro">
   <div class="sec-head">
-    <div class="eyebrow">Para llenar</div>
+    <div class="eyebrow">Tablero en vivo</div>
     <h2>Registro de participantes</h2>
-    <p>Anota a los 16 participantes y la selección que les tocó en el sorteo. La columna de estado se va marcando conforme avanza el torneo.</p>
+    <p>Esta lista vive en una hoja compartida: lo que aquí se edite lo ven todos al actualizar. Edita una fila y pulsa Guardar.</p>
+  </div>
+  <div class="tablero-bar no-print">
+    <span id="conexion" class="conn">Conectando con el tablero…</span>
+    <button class="btn btn-ghost" id="btn-refrescar">↻ Actualizar</button>
+    <input class="clave-in" id="clave" type="text" placeholder="Clave (si aplica)" autocomplete="off">
   </div>
   <table>
     <thead>
-      <tr><th style="width:46px">#</th><th>Participante</th><th>Selección asignada</th><th style="width:120px">¿Sigue viva?</th><th style="width:130px">Hasta dónde llegó</th></tr>
+      <tr><th style="width:42px">#</th><th>Participante</th><th>Selección asignada</th><th style="width:108px">¿Sigue viva?</th><th style="width:140px">Hasta dónde llegó</th><th class="no-print" style="width:92px">Acción</th></tr>
     </thead>
     <tbody id="tbody-registro"></tbody>
   </table>
 </section>
 
-<!-- RUTA A LA FINAL -->
+<!-- RUTA -->
 <section class="sec wrap" id="ruta">
   <div class="sec-head">
     <div class="eyebrow">El camino</div>
     <h2>La ruta a la meta</h2>
-    <p>Desde que arranca la quiniela hasta el corte de caja. Cada etapa elimina la mitad de las selecciones… y de los participantes.</p>
+    <p>Cada etapa elimina la mitad de las selecciones… y de los participantes, hasta el corte de caja.</p>
   </div>
   <div class="ruta">
     <div class="etapa"><div class="km">Salida · sorteo</div><h4>Octavos</h4><div class="cupos">16 equipos · 16 jugando</div></div>
@@ -399,59 +313,162 @@
 </footer>
 
 <script>
-  // Registro: 16 renglones para llenar
-  (function(){
-    var tb = document.getElementById('tbody-registro');
-    var rows = '';
-    for(var i=1;i<=16;i++){
-      rows += '<tr><td><b>'+i+'</b></td><td><span class="line"></span></td><td><span class="line"></span></td><td><span class="estado"></span></td><td><span class="line"></span></td></tr>';
-    }
-    tb.innerHTML = rows;
-  })();
+  /* ====== CONFIGURACIÓN ======
+     Pega aquí la URL de tu App Web de Apps Script (termina en /exec). */
+  var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwGOsjiu4S7dNe9vGoOHqpeyjGc23rtz246vIH41SmDnHSjm1hvZidQ5yWyNn3V2d1E/exec';
 
-  // Sorteo automatico
-  (function(){
-    var msg = document.getElementById('msg');
-    var lista = document.getElementById('lista');
-    var resultado = document.getElementById('resultado');
-    var ultimoTexto = '';
+  var CONFIGURED = WEB_APP_URL.indexOf('script.google.com') !== -1;
+  var ESTADOS = ['', 'Sí', 'No'];
+  var ETAPAS = ['', 'Octavos', 'Cuartos', 'Semifinal', 'Final', '3.er lugar', 'Campeón', 'Eliminada'];
+  var N = 16;
+  var editando = false; // true mientras alguien escribe, para no pisar su captura
 
-    function limpiar(arr){
-      return arr.map(function(s){return s.replace(/^\s*\d+[\.\)\-]\s*/,'').trim();})
-               .filter(function(s){return s.length>0;});
-    }
-    function shuffle(a){
-      for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}
-      return a;
-    }
-    document.getElementById('btn-sortear').addEventListener('click',function(){
-      var nombres = limpiar(document.getElementById('nombres').value.split('\n'));
-      var equipos = limpiar(document.getElementById('equipos').value.split('\n'));
-      if(nombres.length===0 || equipos.length===0){
-        msg.textContent='Captura primero los nombres y las selecciones.'; return;
-      }
-      if(nombres.length!==equipos.length){
-        msg.textContent='Ojo: hay '+nombres.length+' participantes y '+equipos.length+' selecciones. Deben ser la misma cantidad.';
-        return;
-      }
-      var mezcla = shuffle(equipos.slice());
-      var html=''; ultimoTexto='SORTEO QUINIELA HT RENT 2026\n\n';
-      nombres.forEach(function(n,i){
-        html += '<li><b>'+(i+1)+'</b><span>'+n+'</span><span class="arr">→</span><span class="eq">'+mezcla[i]+'</span></li>';
-        ultimoTexto += (i+1)+'. '+n+' → '+mezcla[i]+'\n';
-      });
-      lista.innerHTML = html;
-      resultado.style.display='block';
-      msg.textContent='¡Listo! '+nombres.length+' selecciones repartidas al azar.';
+  /* ---- JSONP ---- */
+  function jsonp(params){
+    return new Promise(function(resolve,reject){
+      var cb = 'cb_'+Math.random().toString(36).slice(2);
+      var s = document.createElement('script');
+      var timer = setTimeout(function(){clean();reject(new Error('timeout'));},12000);
+      function clean(){clearTimeout(timer);try{delete window[cb];}catch(e){window[cb]=undefined;}if(s.parentNode)s.parentNode.removeChild(s);}
+      window[cb]=function(d){clean();resolve(d);};
+      var qs=Object.keys(params).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(params[k]);}).join('&');
+      s.src=WEB_APP_URL+'?'+qs+'&callback='+cb;
+      s.onerror=function(){clean();reject(new Error('red'));};
+      document.head.appendChild(s);
     });
+  }
+
+  function setConn(txt, cls){
+    var el=document.getElementById('conexion');
+    el.textContent=txt; el.className='conn '+(cls||'');
+  }
+
+  function opciones(lista, sel){
+    return lista.map(function(o){
+      var v=o===''?'—':o;
+      return '<option value="'+o+'"'+(o===sel?' selected':'')+'>'+v+'</option>';
+    }).join('');
+  }
+
+  function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+
+  function pintarFilas(rows){
+    var tb=document.getElementById('tbody-registro');
+    var html='';
+    for(var i=0;i<N;i++){
+      var r=rows&&rows[i]?rows[i]:{nombre:'',equipo:'',estado:'',llego:''};
+      var viva = r.estado==='Sí' ? 'viva' : (r.estado==='No' ? 'fuera' : '');
+      var accion = CONFIGURED ? '<button class="btn-row" data-row="'+(i+1)+'">Guardar</button>' : '';
+      html+='<tr class="'+viva+'" data-idx="'+i+'">'
+        +'<td class="num-cell">'+(i+1)+'</td>'
+        +'<td><input class="cell-in" data-f="nombre" value="'+esc(r.nombre)+'" '+(CONFIGURED?'':'readonly')+'></td>'
+        +'<td><input class="cell-in" data-f="equipo" value="'+esc(r.equipo)+'" '+(CONFIGURED?'':'readonly')+'></td>'
+        +'<td><span class="estado-dot"></span><select class="cell-in" data-f="estado" style="width:auto" '+(CONFIGURED?'':'disabled')+'>'+opciones(ESTADOS,r.estado)+'</select></td>'
+        +'<td><select class="cell-in" data-f="llego" '+(CONFIGURED?'':'disabled')+'>'+opciones(ETAPAS,r.llego)+'</select></td>'
+        +(CONFIGURED?'<td class="no-print">'+accion+'</td>':'')+'</tr>';
+    }
+    tb.innerHTML=html;
+    if(CONFIGURED) enlazarFilas();
+  }
+
+  function enlazarFilas(){
+    var tb=document.getElementById('tbody-registro');
+    Array.prototype.forEach.call(tb.querySelectorAll('.cell-in'),function(el){
+      el.addEventListener('focus',function(){editando=true;});
+      el.addEventListener('blur',function(){setTimeout(function(){editando=false;},300);});
+    });
+    Array.prototype.forEach.call(tb.querySelectorAll('.btn-row'),function(btn){
+      btn.addEventListener('click',function(){
+        var tr=btn.parentNode.parentNode;
+        var get=function(f){return tr.querySelector('[data-f="'+f+'"]').value;};
+        btn.textContent='Guardando…'; btn.disabled=true;
+        jsonp({action:'save',row:btn.getAttribute('data-row'),
+               nombre:get('nombre'),equipo:get('equipo'),estado:get('estado'),llego:get('llego'),
+               pin:document.getElementById('clave').value})
+        .then(function(res){
+          if(res&&res.ok){btn.textContent='✓ Guardado';btn.className='btn-row ok';
+            tr.className=get('estado')==='Sí'?'viva':(get('estado')==='No'?'fuera':'');}
+          else{btn.textContent=(res&&res.error)||'Error';btn.className='btn-row err';}
+          btn.disabled=false;
+          setTimeout(function(){btn.textContent='Guardar';btn.className='btn-row';},2200);
+        })
+        .catch(function(){btn.textContent='Sin conexión';btn.className='btn-row err';btn.disabled=false;
+          setTimeout(function(){btn.textContent='Guardar';btn.className='btn-row';},2200);});
+      });
+    });
+  }
+
+  function cargar(){
+    if(!CONFIGURED){
+      setConn('Tablero no conectado · sigue las instrucciones','conn-err');
+      pintarFilas(null);
+      return;
+    }
+    jsonp({action:'list'}).then(function(res){
+      if(res&&res.ok){
+        if(!editando) pintarFilas(res.rows);
+        setConn('● Conectado al tablero','conn-ok');
+      } else {
+        setConn('Error: '+((res&&res.error)||'desconocido'),'conn-err');
+      }
+    }).catch(function(){ setConn('Sin conexión con el tablero','conn-err'); });
+  }
+
+  document.getElementById('btn-refrescar').addEventListener('click',cargar);
+
+  /* ---- Sorteo ---- */
+  (function(){
+    var msg=document.getElementById('msg'), lista=document.getElementById('lista'),
+        resultado=document.getElementById('resultado'), gbtn=document.getElementById('btn-guardar-sorteo');
+    var ultimoTexto='', pares=[];
+    function limpiar(a){return a.map(function(s){return s.replace(/^\s*\d+[\.\)\-]\s*/,'').trim();}).filter(function(s){return s.length>0;});}
+    function shuffle(a){for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=a[i];a[i]=a[j];a[j]=t;}return a;}
+
+    document.getElementById('btn-sortear').addEventListener('click',function(){
+      var nombres=limpiar(document.getElementById('nombres').value.split('\n'));
+      var equipos=limpiar(document.getElementById('equipos').value.split('\n'));
+      if(!nombres.length||!equipos.length){msg.textContent='Captura primero los nombres y las selecciones.';return;}
+      if(nombres.length!==equipos.length){msg.textContent='Ojo: '+nombres.length+' participantes y '+equipos.length+' selecciones. Deben ser la misma cantidad.';return;}
+      var mezcla=shuffle(equipos.slice()); var html=''; ultimoTexto='SORTEO QUINIELA HT RENT 2026\n\n'; pares=[];
+      nombres.forEach(function(n,i){
+        html+='<li><b>'+(i+1)+'</b><span>'+n+'</span><span class="arr">→</span><span class="eq">'+mezcla[i]+'</span></li>';
+        ultimoTexto+=(i+1)+'. '+n+' → '+mezcla[i]+'\n';
+        pares.push({nombre:n,equipo:mezcla[i]});
+      });
+      lista.innerHTML=html; resultado.style.display='block';
+      msg.textContent='¡Listo! '+nombres.length+' selecciones repartidas al azar.';
+      if(CONFIGURED) gbtn.style.display='';
+    });
+
     document.getElementById('btn-copiar').addEventListener('click',function(){
       if(!ultimoTexto){msg.textContent='Primero realiza un sorteo.';return;}
       if(navigator.clipboard&&navigator.clipboard.writeText){
         navigator.clipboard.writeText(ultimoTexto).then(function(){msg.textContent='Resultado copiado al portapapeles.';})
         .catch(function(){msg.textContent='No se pudo copiar; selecciona el texto manualmente.';});
-      } else { msg.textContent='Copia no disponible en este navegador.'; }
+      } else {msg.textContent='Copia no disponible en este navegador.';}
+    });
+
+    gbtn.addEventListener('click',function(){
+      if(!pares.length){msg.textContent='Primero realiza un sorteo.';return;}
+      if(!CONFIGURED){msg.textContent='El tablero aún no está conectado.';return;}
+      gbtn.disabled=true; var clave=document.getElementById('clave').value; var i=0;
+      function siguiente(){
+        if(i>=pares.length){msg.textContent='Sorteo guardado en el tablero ✓';gbtn.disabled=false;cargar();return;}
+        msg.textContent='Guardando en el tablero… '+(i+1)+'/'+pares.length;
+        jsonp({action:'save',row:i+1,nombre:pares[i].nombre,equipo:pares[i].equipo,estado:'Sí',llego:'Octavos',pin:clave})
+        .then(function(res){
+          if(res&&!res.ok){msg.textContent='Se detuvo: '+(res.error||'error');gbtn.disabled=false;return;}
+          i++; siguiente();
+        }).catch(function(){msg.textContent='Sin conexión; se detuvo el guardado.';gbtn.disabled=false;});
+      }
+      siguiente();
     });
   })();
+
+  /* ---- arranque ---- */
+  pintarFilas(null);
+  cargar();
+  setInterval(function(){ if(CONFIGURED && !editando) cargar(); }, 30000);
 </script>
 </body>
 </html>
