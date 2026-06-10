@@ -52,19 +52,22 @@
 
   .grupos{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
   .gcard{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:14px 16px;}
-  .gtop{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
-  .badge{font-family:'Space Mono',monospace;font-weight:700;background:var(--asfalto);color:#fff;border-radius:7px;padding:4px 9px;font-size:.72rem;letter-spacing:.04em;}
+  .gtop{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+  .badge{font-family:'Space Mono',monospace;font-weight:700;background:var(--asfalto);color:#fff;border-radius:7px;padding:4px 9px;font-size:.72rem;letter-spacing:.04em;flex-shrink:0;}
   .gtitle{flex:1;}
   .pot{font-family:'Anton',sans-serif;color:var(--cancha);font-size:1.2rem;}
-  .grow{display:grid;grid-template-columns:16px 1.1fr 1fr 74px;gap:6px;align-items:center;padding:3px 0;}
-  .grow .pos{font-family:'Space Mono',monospace;color:var(--carga);font-size:.7rem;}
-  .vs{text-align:center;font-family:'Anton',sans-serif;color:var(--tinta-soft);font-size:.72rem;letter-spacing:.12em;padding:2px 0;}
-  .cin{border:1px solid transparent;background:transparent;font:inherit;font-size:.84rem;padding:6px;border-radius:6px;color:var(--tinta);width:100%;}
-  .cin:hover{border-color:var(--linea);}
+  .grow{display:grid;grid-template-columns:1.1fr 1fr 70px 24px;gap:6px;align-items:center;padding:3px 0;}
+  .cin{border:1px solid var(--linea);background:var(--niebla);font:inherit;font-size:.84rem;padding:6px;border-radius:6px;color:var(--tinta);width:100%;}
+  .cin:hover{border-color:var(--carga);}
   .cin:focus{background:#fff;outline:2px solid var(--carga);outline-offset:0;}
-  select.cin{cursor:pointer;font-size:.78rem;padding:6px 2px;}
-  .grow.winner{background:rgba(244,211,94,.22);border-radius:7px;}
-  .winner-note{font-size:.72rem;color:var(--cancha);margin-top:6px;font-family:'Space Mono',monospace;}
+  select.cin{cursor:pointer;font-size:.76rem;padding:6px 2px;}
+  .del{border:none;background:transparent;color:var(--bandera);font-size:1.1rem;cursor:pointer;line-height:1;border-radius:6px;}
+  .del:hover{background:rgba(230,57,70,.1);}
+  .add{margin-top:8px;font-family:'Inter';font-weight:700;font-size:.8rem;cursor:pointer;border:1px dashed var(--linea);background:transparent;color:var(--tinta-soft);border-radius:8px;padding:7px 12px;width:100%;}
+  .add:hover{border-color:var(--carga);color:var(--carga);}
+  .empty{color:var(--tinta-soft);font-size:.82rem;padding:6px 0;}
+  .grow.winner .part,.grow.winner .equipo{background:rgba(244,211,94,.3);}
+  .winner-note{font-size:.72rem;color:var(--cancha);margin-top:8px;font-family:'Space Mono',monospace;}
 
   .casa{background:var(--papel);border:1px solid var(--linea);border-left:4px solid var(--carga);border-radius:0 12px 12px 0;padding:18px 20px;}
   .casa h3{margin:0 0 10px;font-size:1.05rem;}
@@ -86,8 +89,8 @@
     <div>
       <div class="eyebrow">HT Rent · Mundial 2026 · Quiniela 3</div>
       <h1>Quiniela de<br>dieciseisavos<span>mano a mano</span></h1>
-      <p class="tagline">32 equipos, 16 duelos. Eliges equipos a $500; en cada duelo, quien apostó al que avanza se lleva la bolsa de ese duelo.</p>
-      <div class="pill">🔥 16 duelos · $500 por equipo</div>
+      <p class="tagline">32 equipos, 16 duelos. Eliges equipos a $500 (puedes repetir); en cada duelo, quien apostó al que avanza se lleva la bolsa.</p>
+      <div class="pill">🔥 16 duelos · $500 por elección · equipo repetible</div>
     </div>
     <svg class="hero-art" viewBox="0 0 460 360" role="img" aria-label="Remolque de HT Rent rumbo al estadio">
       <circle cx="80" cy="55" r="2" fill="#F4D35E" opacity=".7"/><circle cx="130" cy="35" r="1.6" fill="#fff" opacity=".6"/><circle cx="300" cy="48" r="1.8" fill="#fff" opacity=".5"/><circle cx="365" cy="80" r="2" fill="#F4D35E" opacity=".6"/>
@@ -111,21 +114,21 @@
   <div class="sec-head"><div class="eyebrow">Cómo se juega</div><h2>La mecánica</h2><p>Quiniela aparte que arranca con los 32 equipos de Dieciseisavos de Final (28 de junio al 4 de julio).</p></div>
   <div class="pasos">
     <div class="paso"><div class="num">1</div><div><h3>Quedan 32 equipos</h3><p>16 duelos directos de 2 equipos cada uno. Entra quien quiera, haya jugado o no la de grupos.</p></div></div>
-    <div class="paso"><div class="num">2</div><div><h3>Eliges equipos a $500</h3><p>Cada equipo que elijas cuesta $500. Un mismo equipo lo pueden elegir varias personas.</p></div></div>
-    <div class="paso"><div class="num">3</div><div><h3>Cada duelo arma su bolsa</h3><p>El dinero apostado a los 2 equipos de un duelo forma su bolsa. Se calcula sola en el tablero.</p></div></div>
+    <div class="paso"><div class="num">2</div><div><h3>Eliges equipos a $500</h3><p>Cada elección cuesta $500. El mismo equipo lo pueden elegir varias personas.</p></div></div>
+    <div class="paso"><div class="num">3</div><div><h3>Cada duelo arma su bolsa</h3><p>Cada elección suma $500 a la bolsa de su duelo. Se calcula sola en el tablero.</p></div></div>
     <div class="paso"><div class="num">4</div><div><h3>Gana quien tenga al que avanza</h3><p>Quien eligió al equipo que pasa a Octavos se lleva la bolsa del duelo. Si varios acertaron, se reparte.</p></div></div>
   </div>
 </section>
 
 <section class="formula-sec">
   <div class="sec wrap">
-    <div class="sec-head"><div class="eyebrow">El premio</div><h2>La bolsa de cada duelo</h2><p>Depende de cuántas apuestas caigan en ese duelo. El tablero la suma sola.</p></div>
-    <div class="formula"><div class="chip">Apuestas del duelo<small>1 o 2 equipos elegidos</small></div><div class="op">×</div><div class="chip">$500<small>por equipo</small></div><div class="op">=</div><div class="res">Bolsa del duelo<small>para el que avanza</small></div></div>
+    <div class="sec-head"><div class="eyebrow">El premio</div><h2>La bolsa de cada duelo</h2><p>Depende de cuántas elecciones caigan en ese duelo. El tablero la suma sola.</p></div>
+    <div class="formula"><div class="chip">Elecciones del duelo<small>cuántas se anotaron ahí</small></div><div class="op">×</div><div class="chip">$500<small>por elección</small></div><div class="op">=</div><div class="res">Bolsa del duelo<small>para el que avanza</small></div></div>
   </div>
 </section>
 
 <section class="sec wrap">
-  <div class="sec-head"><div class="eyebrow">Tablero en vivo</div><h2>Los 16 duelos</h2><p>Los cruces se conocen al terminar la fase de grupos. Anota los 2 equipos de cada duelo y quién los eligió; marca "Avanza" en el que pase. La bolsa se calcula sola y todos la ven.</p></div>
+  <div class="sec-head"><div class="eyebrow">Tablero en vivo</div><h2>Los 16 duelos</h2><p>Los cruces se conocen al terminar la fase de grupos. Usa "+ Agregar elección" para anotar equipo y participante en cada duelo; marca "Avanza" en el que pase. Todo se guarda y lo ven todos.</p></div>
   <div class="tablero-bar">
     <span id="conexion" class="conn">Conectando con el tablero…</span>
     <button class="btn" id="btn-refrescar">↻ Actualizar</button>
@@ -140,86 +143,107 @@
     <h3>Reglas de la casa (acordar antes de empezar)</h3>
     <ul>
       <li><strong>El que avanza es el ganador del duelo:</strong> si hay tiempo extra o penales, gana quien eligió al equipo que clasifica a Octavos.</li>
+      <li><strong>Si el que avanza lo eligieron varios:</strong> la bolsa del duelo se reparte en partes iguales (el tablero ya lo muestra).</li>
       <li><strong>Si nadie eligió al que avanza:</strong> definan si la bolsa se acumula, se devuelve o pasa al siguiente duelo.</li>
-      <li><strong>Cierre:</strong> cierren y cobren todas las apuestas antes del primer partido de Dieciseisavos (28 de junio), ya con los cruces definidos.</li>
+      <li><strong>Cierre:</strong> cierren y cobren todas las apuestas antes del primer partido de Dieciseisavos (28 de junio).</li>
     </ul>
   </div>
 </section>
 
-<footer>Quiniela de Dieciseisavos <b>HT Rent 2026</b> · 16 duelos · $500 por equipo · Uso interno entre colaboradores.</footer>
+<footer>Quiniela de Dieciseisavos <b>HT Rent 2026</b> · 16 duelos · $500 por elección · Uso interno entre colaboradores.</footer>
 
 <script>
-  /* ====== CONFIGURACIÓN ====== Pega la URL de tu App Web (termina en /exec) — la MISMA de la quiniela de grupos */
-  var WEB_APP_URL = https://script.google.com/macros/s/AKfycbwOnKvoIrOfN4Igddr1YBvSQRY4imcvOHepn4Q7RNS--0Zo85dQwdw6jQrgxEVWM5aJ/exec
+  /* ====== CONFIGURACIÓN ====== */
+  var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwmmigJ7KeLqoc-BPWlqraUJ-bx3MmM-PtdTJdEHoAO8vpJDUPUKQgTeE4BmeoAVZ8y/exec';
 
-  var Q='duelos', GRUPOS=16, POR=2, CUOTA=500, MARCA='Avanza';
-  var N=GRUPOS*POR;
+  var Q='duelos', CUOTA=500, MARCA='Avanza', LABEL='Duelo';
+  var KEYS=['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16'];
+  var SEEDS=null;
   var CONFIGURED = WEB_APP_URL.indexOf('script.google.com')!==-1;
   var editando=false;
 
   function jsonp(p){return new Promise(function(res,rej){var cb='cb_'+Math.random().toString(36).slice(2);var s=document.createElement('script');var t=setTimeout(function(){clean();rej(new Error('timeout'));},12000);function clean(){clearTimeout(t);try{delete window[cb];}catch(e){window[cb]=undefined;}if(s.parentNode)s.parentNode.removeChild(s);}window[cb]=function(d){clean();res(d);};var qs=Object.keys(p).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(p[k]);}).join('&');s.src=WEB_APP_URL+'?'+qs+'&callback='+cb;s.onerror=function(){clean();rej(new Error('red'));};document.head.appendChild(s);});}
   function setConn(t,c){var el=document.getElementById('conexion');el.textContent=t;el.className='conn '+(c||'');}
   function setEstado(t){document.getElementById('estado').textContent=t||'';}
+  function clave(){return document.getElementById('clave').value;}
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
-  function fmt(n){return '$'+n.toLocaleString('es-MX');}
+  function fmt(n){return '$'+Number(n).toLocaleString('es-MX');}
+
+  function rowHtml(r){
+    var dis=CONFIGURED?'':'disabled';
+    return '<div class="grow" data-pos="'+r.pos+'">'
+      +'<input class="cin equipo" value="'+esc(r.equipo)+'" placeholder="Equipo" '+dis+'>'
+      +'<input class="cin part" value="'+esc(r.participante)+'" placeholder="Participante" '+dis+'>'
+      +'<select class="cin marca" '+dis+'><option value="">—</option><option value="Sí"'+(r.marca==='Sí'?' selected':'')+'>'+MARCA+'</option></select>'
+      +(CONFIGURED?'<button class="del" title="Quitar">×</button>':'<span></span>')
+      +'</div>';
+  }
 
   function render(rows){
     var cont=document.getElementById('grupos'), html='';
-    for(var g=0;g<GRUPOS;g++){
-      html+='<div class="gcard"><div class="gtop"><div class="badge">Duelo '+(g+1)+'</div><div class="gtitle"></div><div class="pot" id="pot-'+g+'">$0</div></div>';
-      for(var j=0;j<POR;j++){
-        var idx=g*POR+j+1, r=(rows&&rows[idx-1])?rows[idx-1]:{equipo:'',participante:'',marca:''};
-        var dis=CONFIGURED?'':'disabled';
-        html+='<div class="grow" data-row="'+idx+'">'
-          +'<span class="pos">'+(j===0?'A':'B')+'</span>'
-          +'<input class="cin equipo" value="'+esc(r.equipo)+'" placeholder="Equipo" '+dis+'>'
-          +'<input class="cin part" value="'+esc(r.participante)+'" placeholder="Participante" '+dis+'>'
-          +'<select class="cin marca" '+dis+'><option value="">—</option><option value="Sí"'+(r.marca==='Sí'?' selected':'')+'>'+MARCA+'</option></select>'
-          +'</div>';
-        if(j===0) html+='<div class="vs">VS</div>';
-      }
-      html+='<div class="winner-note" id="wn-'+g+'"></div></div>';
+    for(var k=0;k<KEYS.length;k++){
+      var key=KEYS[k];
+      var mine=(rows||[]).filter(function(r){return String(r.grupo)===String(key);});
+      html+='<div class="gcard" id="card-'+key+'">'
+        +'<div class="gtop"><div class="badge">'+LABEL+' '+key+'</div><div class="gtitle"></div><div class="pot" id="pot-'+key+'">$0</div></div>'
+        +'<div class="rows">'+(mine.length?mine.map(rowHtml).join(''):'<div class="empty">Sin elecciones todavía.</div>')+'</div>'
+        +(CONFIGURED?'<button class="add" data-key="'+key+'">+ Agregar elección</button>':'')
+        +'<div class="winner-note" id="wn-'+key+'"></div></div>';
     }
     cont.innerHTML=html;
     if(CONFIGURED) enlazar();
-    for(var g2=0;g2<GRUPOS;g2++) actualizaGrupo(g2);
+    KEYS.forEach(function(key){ actualiza(key); });
   }
 
-  function actualizaGrupo(g){
-    var card=document.querySelectorAll('.gcard')[g];
-    var rows=card.querySelectorAll('.grow');
-    var pot=0, winner='';
+  function actualiza(key){
+    var card=document.getElementById('card-'+key); if(!card) return;
+    var rows=card.querySelectorAll('.grow'); var pot=0, lideres=[];
     rows.forEach(function(row){
       var part=row.querySelector('.part').value.trim();
       if(part) pot+=CUOTA;
-      if(row.querySelector('.marca').value==='Sí'){ row.classList.add('winner'); if(part) winner=part; }
+      if(row.querySelector('.marca').value==='Sí'){ row.classList.add('winner'); if(part) lideres.push(part); }
       else row.classList.remove('winner');
     });
-    document.getElementById('pot-'+g).textContent=fmt(pot);
-    document.getElementById('wn-'+g).textContent = winner ? ('★ '+winner+' se lleva '+fmt(pot)) : '';
+    document.getElementById('pot-'+key).textContent=fmt(pot);
+    var wn=document.getElementById('wn-'+key);
+    if(!lideres.length) wn.textContent='';
+    else if(lideres.length===1) wn.textContent='★ '+lideres[0]+' se lleva '+fmt(pot);
+    else wn.textContent='★ Se reparten '+fmt(pot)+': '+lideres.join(', ')+' ('+fmt(Math.round(pot/lideres.length))+' c/u)';
   }
+
+  function keyOf(row){ return row.closest('.gcard').id.replace('card-',''); }
 
   function enlazar(){
-    document.querySelectorAll('.grow').forEach(function(row){
-      row.querySelectorAll('.cin').forEach(function(el){
-        el.addEventListener('focus',function(){editando=true;});
-        el.addEventListener('blur',function(){setTimeout(function(){editando=false;},300);});
-        el.addEventListener('change',function(){ guardarFila(row); });
-      });
+    document.querySelectorAll('.grow .cin').forEach(function(el){
+      el.addEventListener('focus',function(){editando=true;});
+      el.addEventListener('blur',function(){setTimeout(function(){editando=false;},300);});
+      el.addEventListener('change',function(){ guardar(el.closest('.grow')); });
     });
+    document.querySelectorAll('.add').forEach(function(b){ b.addEventListener('click',function(){ agregar(b.getAttribute('data-key')); }); });
+    document.querySelectorAll('.del').forEach(function(b){ b.addEventListener('click',function(){ borrar(b.closest('.grow')); }); });
   }
 
-  function guardarFila(row){
-    var g=Math.floor((parseInt(row.getAttribute('data-row'),10)-1)/POR);
-    actualizaGrupo(g);
-    setEstado('Guardando…');
-    jsonp({action:'save',q:Q,row:row.getAttribute('data-row'),
-           equipo:row.querySelector('.equipo').value,
-           participante:row.querySelector('.part').value,
-           marca:row.querySelector('.marca').value,
-           pin:document.getElementById('clave').value})
-    .then(function(res){ setEstado(res&&res.ok?'Guardado ✓':('Error: '+((res&&res.error)||'')));
-      setTimeout(function(){setEstado('');},2000);})
+  function guardar(row){
+    var key=keyOf(row); actualiza(key); setEstado('Guardando…');
+    jsonp({action:'save',q:Q,pos:row.getAttribute('data-pos'),grupo:key,
+      equipo:row.querySelector('.equipo').value,participante:row.querySelector('.part').value,
+      marca:row.querySelector('.marca').value,pin:clave()})
+    .then(function(res){ setEstado(res&&res.ok?'Guardado ✓':('Error: '+((res&&res.error)||''))); setTimeout(function(){setEstado('');},1800); })
+    .catch(function(){ setEstado('Sin conexión'); });
+  }
+
+  function agregar(key){
+    setEstado('Agregando…');
+    jsonp({action:'add',q:Q,grupo:key,pin:clave()})
+    .then(function(res){ if(res&&res.ok){ cargar(); setEstado(''); } else setEstado('Error: '+((res&&res.error)||'')); })
+    .catch(function(){ setEstado('Sin conexión'); });
+  }
+
+  function borrar(row){
+    if(!window.confirm('¿Quitar esta elección?')) return;
+    setEstado('Quitando…');
+    jsonp({action:'del',q:Q,pos:row.getAttribute('data-pos'),pin:clave()})
+    .then(function(res){ if(res&&res.ok){ cargar(); setEstado(''); } else setEstado('Error: '+((res&&res.error)||'')); })
     .catch(function(){ setEstado('Sin conexión'); });
   }
 
