@@ -53,16 +53,21 @@
   .grupos{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;}
   .gcard{background:var(--papel);border:1px solid var(--linea);border-radius:14px;padding:14px 16px;}
   .gtop{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
-  .badge{font-family:'Anton',sans-serif;background:var(--asfalto);color:#fff;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;}
-  .gtitle{flex:1;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta-soft);}
+  .badge{font-family:'Anton',sans-serif;background:var(--asfalto);color:#fff;width:34px;height:34px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;}
+  .gtitle{flex:1;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--tinta-soft);line-height:1.3;}
+  .seedref{color:var(--carga);}
   .pot{font-family:'Anton',sans-serif;color:var(--cancha);font-size:1.2rem;}
-  .grow{display:grid;grid-template-columns:16px 1.1fr 1fr 74px;gap:6px;align-items:center;padding:3px 0;border-bottom:1px dashed var(--linea);}
-  .grow .pos{font-family:'Space Mono',monospace;color:var(--carga);font-size:.7rem;}
-  .cin{border:1px solid transparent;background:transparent;font:inherit;font-size:.84rem;padding:6px;border-radius:6px;color:var(--tinta);width:100%;}
-  .cin:hover{border-color:var(--linea);}
+  .grow{display:grid;grid-template-columns:1.1fr 1fr 64px 24px;gap:6px;align-items:center;padding:3px 0;}
+  .cin{border:1px solid var(--linea);background:var(--niebla);font:inherit;font-size:.84rem;padding:6px;border-radius:6px;color:var(--tinta);width:100%;}
+  .cin:hover{border-color:var(--carga);}
   .cin:focus{background:#fff;outline:2px solid var(--carga);outline-offset:0;}
-  select.cin{cursor:pointer;font-size:.78rem;padding:6px 2px;}
-  .grow.winner{background:rgba(244,211,94,.22);border-radius:7px;}
+  select.cin{cursor:pointer;font-size:.76rem;padding:6px 2px;}
+  .del{border:none;background:transparent;color:var(--bandera);font-size:1.1rem;cursor:pointer;line-height:1;border-radius:6px;}
+  .del:hover{background:rgba(230,57,70,.1);}
+  .add{margin-top:8px;font-family:'Inter';font-weight:700;font-size:.8rem;cursor:pointer;border:1px dashed var(--linea);background:transparent;color:var(--tinta-soft);border-radius:8px;padding:7px 12px;width:100%;}
+  .add:hover{border-color:var(--carga);color:var(--carga);}
+  .empty{color:var(--tinta-soft);font-size:.82rem;padding:6px 0;}
+  .grow.winner .part,.grow.winner .equipo{background:rgba(244,211,94,.3);}
   .winner-note{font-size:.72rem;color:var(--cancha);margin-top:8px;font-family:'Space Mono',monospace;}
 
   .casa{background:var(--papel);border:1px solid var(--linea);border-left:4px solid var(--carga);border-radius:0 12px 12px 0;padding:18px 20px;}
@@ -85,8 +90,8 @@
     <div>
       <div class="eyebrow">HT Rent · Mundial 2026 · Quiniela 2</div>
       <h1>Quiniela de<br>arranque<span>cada grupo, su bolsa</span></h1>
-      <p class="tagline">48 equipos en 12 grupos de 4. Eliges los equipos que quieras a $100 cada uno; cada grupo arma su bolsa y quien tenga al líder se la lleva.</p>
-      <div class="pill">⚽ 12 grupos de 4 · $100 por equipo · 12 bolsas</div>
+      <p class="tagline">48 equipos en 12 grupos. Eliges los equipos que quieras a $100 cada uno (puedes repetir equipo); cada grupo arma su bolsa y quien tenga al líder se la lleva.</p>
+      <div class="pill">⚽ 12 grupos · $100 por elección · equipo repetible</div>
     </div>
     <svg class="hero-art" viewBox="0 0 460 360" role="img" aria-label="Remolque de HT Rent rumbo al estadio">
       <circle cx="80" cy="55" r="2" fill="#F4D35E" opacity=".7"/><circle cx="130" cy="35" r="1.6" fill="#fff" opacity=".6"/><circle cx="300" cy="48" r="1.8" fill="#fff" opacity=".5"/><circle cx="365" cy="80" r="2" fill="#F4D35E" opacity=".6"/>
@@ -107,24 +112,24 @@
 </header>
 
 <section class="sec wrap">
-  <div class="sec-head"><div class="eyebrow">Cómo se juega</div><h2>La mecánica</h2><p>Los 48 equipos del Mundial repartidos en 12 grupos de 4. Se juega antes de que arranque el torneo.</p></div>
+  <div class="sec-head"><div class="eyebrow">Cómo se juega</div><h2>La mecánica</h2><p>Los 48 equipos del Mundial en 12 grupos. Se juega antes de que arranque el torneo.</p></div>
   <div class="pasos">
-    <div class="paso"><div class="num">1</div><div><h3>Eliges tus equipos</h3><p>Cada quien elige los equipos que quiera (de cualquier grupo) y paga $100 por cada uno.</p></div></div>
-    <div class="paso"><div class="num">2</div><div><h3>Cada grupo arma su bolsa</h3><p>Un grupo completo (4 equipos elegidos) junta $400. La bolsa se calcula sola en el tablero.</p></div></div>
-    <div class="paso"><div class="num">3</div><div><h3>Gana el líder del grupo</h3><p>Quien tenga al equipo que quede en 1.er lugar de ese grupo se lleva la bolsa completa del grupo.</p></div></div>
+    <div class="paso"><div class="num">1</div><div><h3>Eliges tus equipos</h3><p>Cada quien elige los equipos que quiera y paga $100 por cada elección. El mismo equipo lo pueden elegir varias personas.</p></div></div>
+    <div class="paso"><div class="num">2</div><div><h3>Cada grupo arma su bolsa</h3><p>Cada elección suma $100 a la bolsa de su grupo. Entre más elecciones, más grande la bolsa. Se calcula sola.</p></div></div>
+    <div class="paso"><div class="num">3</div><div><h3>Gana el líder del grupo</h3><p>Quien tenga al equipo que quede en 1.er lugar de ese grupo se lleva la bolsa. Si varios lo eligieron, se reparte en partes iguales.</p></div></div>
     <div class="paso"><div class="num">4</div><div><h3>12 grupos, 12 bolsas</h3><p>Cada grupo se paga por separado; puedes ganar en varios si acertaste varios líderes.</p></div></div>
   </div>
 </section>
 
 <section class="formula-sec">
   <div class="sec wrap">
-    <div class="sec-head"><div class="eyebrow">El premio</div><h2>La bolsa de cada grupo</h2><p>Grupo lleno = 4 equipos × $100 = $400 para quien tenga al líder.</p></div>
-    <div class="formula"><div class="chip">4 equipos<small>elegidos en el grupo</small></div><div class="op">×</div><div class="chip">$100<small>por equipo</small></div><div class="op">=</div><div class="res">$400<small>para el líder del grupo</small></div></div>
+    <div class="sec-head"><div class="eyebrow">El premio</div><h2>La bolsa de cada grupo</h2><p>Depende de cuántas elecciones caigan en ese grupo. El tablero la suma sola.</p></div>
+    <div class="formula"><div class="chip">Elecciones del grupo<small>cuántas se anotaron ahí</small></div><div class="op">×</div><div class="chip">$100<small>por elección</small></div><div class="op">=</div><div class="res">Bolsa del grupo<small>para quien tenga al líder</small></div></div>
   </div>
 </section>
 
 <section class="sec wrap">
-  <div class="sec-head"><div class="eyebrow">Tablero en vivo</div><h2>Los 12 grupos</h2><p>La cabeza de serie ya viene de pista en cada grupo. Anota cada equipo y quién lo eligió; la bolsa se calcula sola. Marca "Líder" en el equipo que gane el grupo. Lo que edites se guarda y lo ven todos.</p></div>
+  <div class="sec-head"><div class="eyebrow">Tablero en vivo</div><h2>Los 12 grupos</h2><p>Usa "+ Agregar elección" en cada grupo para anotar equipo y participante (el mismo equipo se puede repetir). Marca "Líder" en el equipo que gane el grupo. Todo se guarda y lo ven todos.</p></div>
   <div class="tablero-bar">
     <span id="conexion" class="conn">Conectando con el tablero…</span>
     <button class="btn" id="btn-refrescar">↻ Actualizar</button>
@@ -138,89 +143,109 @@
   <div class="casa">
     <h3>Reglas de la casa (acordar antes de empezar)</h3>
     <ul>
-      <li><strong>El "líder" es el 1.er lugar oficial del grupo</strong> al cerrar la fase de grupos (27 de junio), según la tabla de posiciones de la FIFA.</li>
-      <li><strong>Si nadie tuvo al líder de un grupo:</strong> definan si esa bolsa se acumula, se devuelve, o pasa al 2.º lugar.</li>
+      <li><strong>El "líder" es el 1.er lugar oficial del grupo</strong> al cerrar la fase de grupos (27 de junio), según la tabla de la FIFA.</li>
+      <li><strong>Si el líder lo eligieron varios:</strong> la bolsa del grupo se reparte en partes iguales entre ellos (el tablero ya lo muestra).</li>
+      <li><strong>Si nadie tuvo al líder:</strong> definan si esa bolsa se acumula, se devuelve, o pasa al 2.º lugar.</li>
       <li><strong>Cierre:</strong> cierren y cobren todas las elecciones antes del primer partido (11 de junio).</li>
     </ul>
   </div>
 </section>
 
-<footer>Quiniela de Arranque <b>HT Rent 2026</b> · 12 grupos de 4 · $100 por equipo · Uso interno entre colaboradores.</footer>
+<footer>Quiniela de Arranque <b>HT Rent 2026</b> · 12 grupos · $100 por elección · Uso interno entre colaboradores.</footer>
 
 <script>
-  /* ====== CONFIGURACIÓN ====== Pega la URL de tu App Web (termina en /exec) */
-  var WEB_APP_URL = https://script.google.com/macros/s/AKfycbwOnKvoIrOfN4Igddr1YBvSQRY4imcvOHepn4Q7RNS--0Zo85dQwdw6jQrgxEVWM5aJ/exec
+  /* ====== CONFIGURACIÓN ====== */
+  var WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbwmmigJ7KeLqoc-BPWlqraUJ-bx3MmM-PtdTJdEHoAO8vpJDUPUKQgTeE4BmeoAVZ8y/exec';
 
-  var Q='grupos', GRUPOS=12, POR=4, CUOTA=100, LETRAS='ABCDEFGHIJKL', MARCA='Líder';
+  var Q='grupos', CUOTA=100, MARCA='Líder', LABEL='Grupo';
+  var KEYS=['A','B','C','D','E','F','G','H','I','J','K','L'];
   var SEEDS=['México','Canadá','Brasil','Estados Unidos','Alemania','Países Bajos','Bélgica','España','Francia','Argentina','Portugal','Inglaterra'];
-  var N=GRUPOS*POR;
   var CONFIGURED = WEB_APP_URL.indexOf('script.google.com')!==-1;
   var editando=false;
 
   function jsonp(p){return new Promise(function(res,rej){var cb='cb_'+Math.random().toString(36).slice(2);var s=document.createElement('script');var t=setTimeout(function(){clean();rej(new Error('timeout'));},12000);function clean(){clearTimeout(t);try{delete window[cb];}catch(e){window[cb]=undefined;}if(s.parentNode)s.parentNode.removeChild(s);}window[cb]=function(d){clean();res(d);};var qs=Object.keys(p).map(function(k){return encodeURIComponent(k)+'='+encodeURIComponent(p[k]);}).join('&');s.src=WEB_APP_URL+'?'+qs+'&callback='+cb;s.onerror=function(){clean();rej(new Error('red'));};document.head.appendChild(s);});}
   function setConn(t,c){var el=document.getElementById('conexion');el.textContent=t;el.className='conn '+(c||'');}
   function setEstado(t){document.getElementById('estado').textContent=t||'';}
+  function clave(){return document.getElementById('clave').value;}
   function esc(s){return String(s==null?'':s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
-  function fmt(n){return '$'+n.toLocaleString('es-MX');}
+  function fmt(n){return '$'+Number(n).toLocaleString('es-MX');}
+
+  function rowHtml(r){
+    var dis=CONFIGURED?'':'disabled';
+    return '<div class="grow" data-pos="'+r.pos+'">'
+      +'<input class="cin equipo" value="'+esc(r.equipo)+'" placeholder="Equipo" '+dis+'>'
+      +'<input class="cin part" value="'+esc(r.participante)+'" placeholder="Participante" '+dis+'>'
+      +'<select class="cin marca" '+dis+'><option value="">—</option><option value="Sí"'+(r.marca==='Sí'?' selected':'')+'>'+MARCA+'</option></select>'
+      +(CONFIGURED?'<button class="del" title="Quitar">×</button>':'<span></span>')
+      +'</div>';
+  }
 
   function render(rows){
     var cont=document.getElementById('grupos'), html='';
-    for(var g=0;g<GRUPOS;g++){
-      var letra=LETRAS.charAt(g);
-      html+='<div class="gcard"><div class="gtop"><div class="badge">'+letra+'</div><div class="gtitle">Grupo '+letra+'</div><div class="pot" id="pot-'+g+'">$0</div></div>';
-      for(var j=0;j<POR;j++){
-        var idx=g*POR+j+1, r=(rows&&rows[idx-1])?rows[idx-1]:{equipo:'',participante:'',marca:''};
-        var dis=CONFIGURED?'':'disabled';
-        var ph = (j===0) ? ('1.º: '+SEEDS[g]) : 'Equipo';
-        html+='<div class="grow" data-row="'+idx+'">'
-          +'<span class="pos">'+(j+1)+'</span>'
-          +'<input class="cin equipo" value="'+esc(r.equipo)+'" placeholder="'+esc(ph)+'" '+dis+'>'
-          +'<input class="cin part" value="'+esc(r.participante)+'" placeholder="Participante" '+dis+'>'
-          +'<select class="cin marca" '+dis+'><option value="">—</option><option value="Sí"'+(r.marca==='Sí'?' selected':'')+'>'+MARCA+'</option></select>'
-          +'</div>';
-      }
-      html+='<div class="winner-note" id="wn-'+g+'"></div></div>';
+    for(var k=0;k<KEYS.length;k++){
+      var key=KEYS[k];
+      var mine=(rows||[]).filter(function(r){return String(r.grupo)===String(key);});
+      var seedref = SEEDS ? ('<br><span class="seedref">Cabeza: '+SEEDS[k]+'</span>') : '';
+      html+='<div class="gcard" id="card-'+key+'">'
+        +'<div class="gtop"><div class="badge">'+key+'</div><div class="gtitle">'+LABEL+' '+key+seedref+'</div><div class="pot" id="pot-'+key+'">$0</div></div>'
+        +'<div class="rows">'+(mine.length?mine.map(rowHtml).join(''):'<div class="empty">Sin elecciones todavía.</div>')+'</div>'
+        +(CONFIGURED?'<button class="add" data-key="'+key+'">+ Agregar elección</button>':'')
+        +'<div class="winner-note" id="wn-'+key+'"></div></div>';
     }
     cont.innerHTML=html;
     if(CONFIGURED) enlazar();
-    for(var g2=0;g2<GRUPOS;g2++) actualizaGrupo(g2);
+    KEYS.forEach(function(key){ actualiza(key); });
   }
 
-  function actualizaGrupo(g){
-    var card=document.querySelectorAll('.gcard')[g];
-    var rows=card.querySelectorAll('.grow');
-    var pot=0, winner='';
+  function actualiza(key){
+    var card=document.getElementById('card-'+key); if(!card) return;
+    var rows=card.querySelectorAll('.grow'); var pot=0, lideres=[];
     rows.forEach(function(row){
       var part=row.querySelector('.part').value.trim();
       if(part) pot+=CUOTA;
-      if(row.querySelector('.marca').value==='Sí'){ row.classList.add('winner'); if(part) winner=part; }
+      if(row.querySelector('.marca').value==='Sí'){ row.classList.add('winner'); if(part) lideres.push(part); }
       else row.classList.remove('winner');
     });
-    document.getElementById('pot-'+g).textContent=fmt(pot);
-    document.getElementById('wn-'+g).textContent = winner ? ('★ '+winner+' se lleva '+fmt(pot)) : '';
+    document.getElementById('pot-'+key).textContent=fmt(pot);
+    var wn=document.getElementById('wn-'+key);
+    if(!lideres.length) wn.textContent='';
+    else if(lideres.length===1) wn.textContent='★ '+lideres[0]+' se lleva '+fmt(pot);
+    else wn.textContent='★ Se reparten '+fmt(pot)+': '+lideres.join(', ')+' ('+fmt(Math.round(pot/lideres.length))+' c/u)';
   }
+
+  function keyOf(row){ return row.closest('.gcard').id.replace('card-',''); }
 
   function enlazar(){
-    document.querySelectorAll('.grow').forEach(function(row){
-      row.querySelectorAll('.cin').forEach(function(el){
-        el.addEventListener('focus',function(){editando=true;});
-        el.addEventListener('blur',function(){setTimeout(function(){editando=false;},300);});
-        el.addEventListener('change',function(){ guardarFila(row); });
-      });
+    document.querySelectorAll('.grow .cin').forEach(function(el){
+      el.addEventListener('focus',function(){editando=true;});
+      el.addEventListener('blur',function(){setTimeout(function(){editando=false;},300);});
+      el.addEventListener('change',function(){ guardar(el.closest('.grow')); });
     });
+    document.querySelectorAll('.add').forEach(function(b){ b.addEventListener('click',function(){ agregar(b.getAttribute('data-key')); }); });
+    document.querySelectorAll('.del').forEach(function(b){ b.addEventListener('click',function(){ borrar(b.closest('.grow')); }); });
   }
 
-  function guardarFila(row){
-    var g=Math.floor((parseInt(row.getAttribute('data-row'),10)-1)/POR);
-    actualizaGrupo(g);
-    setEstado('Guardando…');
-    jsonp({action:'save',q:Q,row:row.getAttribute('data-row'),
-           equipo:row.querySelector('.equipo').value,
-           participante:row.querySelector('.part').value,
-           marca:row.querySelector('.marca').value,
-           pin:document.getElementById('clave').value})
-    .then(function(res){ setEstado(res&&res.ok?'Guardado ✓':('Error: '+((res&&res.error)||'')));
-      setTimeout(function(){setEstado('');},2000);})
+  function guardar(row){
+    var key=keyOf(row); actualiza(key); setEstado('Guardando…');
+    jsonp({action:'save',q:Q,pos:row.getAttribute('data-pos'),grupo:key,
+      equipo:row.querySelector('.equipo').value,participante:row.querySelector('.part').value,
+      marca:row.querySelector('.marca').value,pin:clave()})
+    .then(function(res){ setEstado(res&&res.ok?'Guardado ✓':('Error: '+((res&&res.error)||''))); setTimeout(function(){setEstado('');},1800); })
+    .catch(function(){ setEstado('Sin conexión'); });
+  }
+
+  function agregar(key){
+    setEstado('Agregando…');
+    jsonp({action:'add',q:Q,grupo:key,pin:clave()})
+    .then(function(res){ if(res&&res.ok){ cargar(); setEstado(''); } else setEstado('Error: '+((res&&res.error)||'')); })
+    .catch(function(){ setEstado('Sin conexión'); });
+  }
+
+  function borrar(row){
+    if(!window.confirm('¿Quitar esta elección?')) return;
+    setEstado('Quitando…');
+    jsonp({action:'del',q:Q,pos:row.getAttribute('data-pos'),pin:clave()})
+    .then(function(res){ if(res&&res.ok){ cargar(); setEstado(''); } else setEstado('Error: '+((res&&res.error)||'')); })
     .catch(function(){ setEstado('Sin conexión'); });
   }
 
